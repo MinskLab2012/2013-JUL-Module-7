@@ -1,0 +1,1 @@
+Scripts with t_ext prefix also create cleansing tables
