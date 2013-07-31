@@ -1,3 +1,4 @@
+
 CREATE TABLESPACE ts_SB_MBackUp
 DATAFILE 'SB_MBackUp_data_01.dat'
 SIZE 50M
