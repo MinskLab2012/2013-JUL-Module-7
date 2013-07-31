@@ -1,3 +1,4 @@
+
            SELECT LPAD ( '  '
                        , 2 * ( LEVEL - 1 ) )
                   || child_geo_id

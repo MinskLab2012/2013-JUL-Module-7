@@ -1,3 +1,4 @@
+
 SELECT lcc.geo_id AS country_geo_id
        , lcc.country_id
        , lcc.country_code_a3
