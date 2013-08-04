@@ -1,0 +1,6 @@
+begin
+PKG_LOAD_DIM_SHIPS.LOAD_T_SHIPS;
+pkg_load_dim_products_scd.load_t_and_lc_categories;
+pkg_load_dim_ports.load_t_and_lc_ports;
+PKG_LOAD_DIM_CUSTOMERS.LOAD_T_AND_LC_CUSTOMERS;
+end;
