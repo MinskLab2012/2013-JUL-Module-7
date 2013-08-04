@@ -1,0 +1,8 @@
+--DROP SEQUENCE prg_seq;
+
+CREATE SEQUENCE prg_seq
+   START WITH 1
+   INCREMENT BY 1
+   NOCACHE
+   NOCYCLE;  
+   

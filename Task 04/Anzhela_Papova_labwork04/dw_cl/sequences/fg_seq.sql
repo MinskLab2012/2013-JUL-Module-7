@@ -1,3 +1,5 @@
+--DROP SEQUENCE fg_seq;
+
 CREATE SEQUENCE fg_seq
  START WITH     1
  INCREMENT BY   1
