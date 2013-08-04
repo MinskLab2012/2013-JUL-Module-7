@@ -1,0 +1,7 @@
+DROP SEQUENCE seq_t_operations;
+
+CREATE SEQUENCE seq_t_operations
+   START WITH 1
+   INCREMENT BY 1
+   NOCACHE
+   NOCYCLE;
