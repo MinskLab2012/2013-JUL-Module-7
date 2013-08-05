@@ -1,0 +1,110 @@
+1,Adyen,online
+2,Alipay,online
+3,Amazon Payments,online
+4,AsiaPay,online
+5,Atos,online
+6,Authorize.Net,online
+7,Balanced,online
+8,BPAY,online
+9,Braintree,online
+10,Chargify,online
+11,Citi bank,online
+12,ClickandBuy,online
+13,CreditCall,online
+14,CyberSource,online
+15,DataCash,online
+16,DigiCash,online
+17,Dwolla,online
+18,Edy,online
+19,Elavon,online
+20,Euronet Worldwide,online
+21,eWAY,online
+22,Flooz,online
+23,GlobalCollect,online
+24,Google,online
+25,HSBC,online
+26,iKobo,online
+27,IP Payments,online
+28,Mobilpenge,online
+29,ModusLink,online
+30,MPP Global Solutions,online
+31,Neteller,online
+32,Nochex,online
+33,Ogone,online
+34,Paybox,online
+35,PayEx,online
+36,Paymate,online
+37,Paymill,online
+38,PayPal,online
+39,Payoneer,online
+40,PayPoint,online
+41,Paysafecard,online
+42,PayXpert,online
+43,Payza,online
+44,Peppercoin,online
+45,Playspan,online
+46,Popmoney,online
+47,Probiller,online
+48,Recurly,online
+49,Sage Group,online
+50,Skrill (Moneybookers),online
+51,Stripe,online
+52,Square/ Inc.,online
+53,TFI Markets,online
+54,TIMWE (specialized in Emerging Markets),online
+55,VeriFone,online
+56,Vindicia,online
+57,WebMoney,online
+58,WePay,online
+59,Wirecard,online
+60,WorldPay,online
+61,Cash,cash
+62,BNP Paribas SA / Paris / France,bank
+63,Industrial & Commercial Bank of China Limited / Beijing / China,bank
+64,Cr?dit Agricole SA / Montrouge / France,bank
+65,Barclays Bank PLC / London / UK,bank
+66,JAPAN POST BANK Co Ltd / Tokyo / Japan,bank
+67,China Construction Bank Corporation / Beijing / China,bank
+68,Agricultural Bank of China Limited / Beijing / China,bank
+69,The Royal Bank of Scotland plc / Edinburgh / UK,bank
+70,Bank of China Limited / Beijing / China,bank
+71,The Bank of Tokyo-Mitsubishi UFJ Ltd / Tokyo / Japan,bank
+72,JPMorgan Chase Bank National Association / New York / USA,bank
+73,Sumitomo Mitsui Banking Corporation / Tokyo / Japan,bank
+74,Soci?t? G?n?rale / Paris La D?fense / France,bank
+75,Banco Santander SA / Boadilla del Monte / Spain,bank
+76,Lloyds TSB Bank plc / London / UK,bank
+77,BPCE / Paris / France,bank
+78,Bank of America NA / Charlotte / USA,bank
+79,UBS AG / Z?rich / Switzerland,bank
+80,HSBC Bank plc / London / UK,bank
+81,Citibank NA / New York / USA,bank
+82,Wells Fargo Bank NA / San Francisco / USA,bank
+83,UniCredit SpA / Milan / Italy,bank
+84,ING Bank NV / Amsterdam / Netherlands,bank
+85,Credit Suisse AG / Z?rich / Switzerland,bank
+86,Cr?dit Agricole Corporate and Investment Bank / Paris La D?fense / France,bank
+87,China Development Bank Corporation / Beijing / China,bank
+88,Rabobank Nederland / Utrecht / Netherlands,bank
+89,Mizuho Bank Ltd / Tokyo / Japan,bank
+90,Mizuho Corporate Bank Ltd / Tokyo / Japan,bank
+91,Bank of Scotland plc / Edinburgh / UK,bank
+92,Nordea Bank AB (publ) / Stockholm / Sweden,bank
+93,Intesa Sanpaolo SpA / Milan / Italy,bank
+94,The Norinchukin Bank / Tokyo / Japan,bank
+95,Bank of Communications Co Ltd / Shanghai / China,bank
+96,Banco Bilbao Vizcaya Argentaria SA / Madrid / Spain,bank
+97,Commerzbank AG / Frankfurt am Main / Germany,bank
+98,The Toronto-Dominion Bank / Toronto / Canada,bank
+99,National Australia Bank Ltd / Melbourne / Australia,bank
+100,The Hongkong and Shanghai Banking Corporation Limited / Hong Kong / Hong Kong,bank
+101,Royal Bank of Canada / Montr?al / Canada,bank
+102,Commonwealth Bank of Australia / Sydney / Australia,bank
+103,Westpac Banking Corporation / Sydney / Australia,bank
+104,Natixis / Paris / France,bank
+105,Credit Suisse International / London / UK,bank
+106,The Bank of Nova Scotia / Toronto / Canada,bank
+107,Australia and New Zealand Banking Group Limited/ Docklands/ Australia,bank
+108,Postal Savings Bank of China Co Ltd/ Beijing/ China,bank
+109,Kreditanstalt fur Wiederaufbau (KfW) / Frankfurt am Main / Germany,bank
+110,Standard Chartered PLC / London / UK,bank
