@@ -51,8 +51,8 @@ BEGIN
               , t.customer_tel = t_cust ( i ).cust_tel
               , t.last_update_dt = SYSDATE
           WHERE t.customer_code = t_cust ( i ).customer_identifier
-            AND t.customer_fax != t_cust ( i ).cust_fax
-            AND t.customer_tel != t_cust ( i ).cust_tel;
+            AND (t.customer_fax != t_cust ( i ).cust_fax
+            OR t.customer_tel != t_cust ( i ).cust_tel);
 
          UPDATE st.lc_customers lc
             SET lc.company_name = t_cust ( i ).cmp_name
@@ -67,12 +67,12 @@ BEGIN
                       WHERE localization_id = curloc )
               , lc.last_insert_dt = SYSDATE
           WHERE lc.customer_id = t_cust ( i ).customer_id
-            AND lc.company_name != t_cust ( i ).cmp_name
-            AND lc.customer_country != t_cust ( i ).cust_region
-            AND lc.customer_city != t_cust ( i ).cust_city
-            AND lc.customer_address != t_cust ( i ).cust_street
-            AND lc.customer_email != t_cust ( i ).cust_email
-            AND lc.contact_person != t_cust ( i ).cnt_per;
+            AND (lc.company_name != t_cust ( i ).cmp_name
+            OR lc.customer_country != t_cust ( i ).cust_region
+            OR lc.customer_city != t_cust ( i ).cust_city
+            OR lc.customer_address != t_cust ( i ).cust_street
+            OR lc.customer_email != t_cust ( i ).cust_email
+            OR lc.contact_person != t_cust ( i ).cnt_per);
       ELSE
          INSERT INTO st.t_customers t ( t.customer_id
                                       , t.customer_code

@@ -17,7 +17,6 @@
 CREATE TABLE t_insurance
 (
    insurance_id   NUMBER ( 20, 0 ) NOT NULL
- , insurance_type_id NUMBER ( 20, 0 )
  , insurance_code NUMBER ( 20, 0 )
  , insurence_type_id NUMBER ( 20, 0 )
  , insurence_cost NUMBER ( 10, 2 )
