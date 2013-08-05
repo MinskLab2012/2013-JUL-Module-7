@@ -1,12 +1,10 @@
-/* Formatted on 04.08.2013 16:46:04 (QP5 v5.139.911.3011) */
 WITH tt --my initial pre-agregated data, I need to calculate subtotals and grand total for month and payment system
         AS (  SELECT TO_CHAR (TRUNC (transaction_dt, 'mm'), 'Month')
                         AS month_id,
                      country,
                      payment_system_desc,
                      SUM (cost) AS cc,
-                    count(cost) as cnt,
-                     '0' as gid
+                    count(cost) as cnt
                 FROM tmp_orders
                WHERE     EXTRACT (YEAR FROM transaction_dt) = :p_year
                      AND country = :p_country
@@ -19,13 +17,13 @@ SELECT decode(gid, 1, 'Total in '||month_id, month_id) as month_id, decode(gid, 
   FROM tt
 MODEL
    DIMENSION BY (month_id, payment_system_desc)
-   MEASURES (cc, cnt, gid)
+   MEASURES (cc, cnt, 0 gid)
    RULES
       (
       --calculating subtotals for month
       cc [FOR month_id IN  (SELECT month_id FROM tt), NULL] = SUM (cc)[CV (month_id), ANY],
       cnt [FOR month_id IN  (SELECT month_id FROM tt), NULL] = sum (cnt)[CV (month_id), ANY],
-      gid [FOR month_id IN  (SELECT month_id FROM tt), NULL] = '1', -- I need this column to format subtotals  like 'Total ...'
+      gid [FOR month_id IN  (SELECT month_id FROM tt), NULL] = '1', -- I need GID column to format subtotals  like 'Total ...'
       -- calculating subtotals for payment systems
       cc [NULL, FOR payment_system_desc IN    (SELECT DISTINCT payment_system_desc FROM tt)] =     SUM (cc)[ANY, CV (payment_system_desc)],
       cnt [NULL, FOR payment_system_desc IN    (SELECT DISTINCT payment_system_desc FROM tt)] =     sum (cnt)[ANY, CV (payment_system_desc)],
