@@ -1,17 +1,41 @@
-select * from(  SELECT event_dt
-       , company_name
-       , avg(avg_pct) avg_pct
-       , sum(sum_income) sum_income
-       , count(count_trans) count_trans
-    FROM u_dw_ext_references.agr_trans
-GROUP BY ( event_dt, company_name )
-)
-model
-dimension by (event_dt, company_name)
-measures(avg_pct avg_pct , 0 sum_income, 0 count_trans)
-rules (avg_pct[any,'Total'] = avg(avg_pct) over (partition by event_dt,company_name order by (company_name)),
-sum_income[any,'Total'] = sum(sum_income)over (partition by event_dt,company_name order by (company_name)),
-count_trans [ any,'Total'] = count(count_trans) over (partition by event_dt,company_name order by (company_name)))
-order by 3
-
-select * from u_dw_ext_references.agr_trans
+/* Formatted on 8/6/2013 12:30:09 PM (QP5 v5.139.911.3011) */
+WITH temp AS (  SELECT TO_CHAR ( TRUNC ( t.tran_id
+                                       , 'MM' )
+                               , 'Month' )
+                          tran_id
+                     , prod.prod_name
+                     , cust.company_name
+                     , AVG ( t.dep_goods / t.ar_goods ) * 100 pct
+                     , SUM ( t.dep_goods * prod.income_coef ) income
+                  FROM u_dw_ext_references.t_trans t
+                       JOIN u_dw_ext_references.ext_products prod
+                          ON ( t.prod_id = prod.prod_id )
+                       JOIN u_dw_ext_references.ext_prod_categories cat
+                          ON ( prod.prod_category_id = cat.prod_category_id )
+                       JOIN u_dw_ext_references.ext_ship sh
+                          ON ( t.ship_id = sh.ship_unique_identifier )
+                       JOIN u_dw_ext_references.ports p
+                          ON ( t.dep_port = p.port_identifier )
+                       JOIN u_dw_ext_references.ports s
+                          ON ( t.ar_port = s.port_identifier )
+                       JOIN u_dw_ext_references.ext_insurances ins
+                          ON ( t.ins_id = ins.unique_identifier )
+                       JOIN u_dw_ext_references.ext_customers cust
+                          ON ( t.cust_id = cust.customer_identifier )
+              GROUP BY t.tran_id
+                     , prod.prod_name
+                     , cust.company_name)
+SELECT *
+  FROM temp
+MODEL
+   DIMENSION BY ( tran_id, company_name )
+   MEASURES ( pct pct, income income )
+   RULES
+      ( pct [FOR tran_id IN
+                (SELECT DISTINCT tran_id
+                   FROM temp), NULL] = AVG ( pct )[CV ( tran_id ), ANY],
+      pct ['TOTAL', NULL] = AVG ( pct )[ANY, ANY],
+      income [FOR tran_id IN
+                 (SELECT DISTINCT tran_id
+                    FROM temp), NULL] = SUM ( income )[CV ( tran_id ), ANY],
+      income ['TOTAL', NULL] = SUM ( income )[ANY, ANY] );
