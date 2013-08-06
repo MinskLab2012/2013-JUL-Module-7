@@ -1,3 +1,4 @@
+/* Formatted on 02.08.2013 21:11:52 (QP5 v5.139.911.3011) */
 DROP TABLE ext_prod_brand;
 
 CREATE TABLE ext_prod_brand ( brand_name VARCHAR2 ( 70 CHAR ) )

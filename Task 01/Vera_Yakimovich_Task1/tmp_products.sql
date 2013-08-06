@@ -1,12 +1,15 @@
+/* Formatted on 02.08.2013 21:11:10 (QP5 v5.139.911.3011) */
 DROP TABLE temp_products;
 
 --products
 
 CREATE TABLE temp_products
 (
-   prod_id        NUMBER ( 20 )
+   product_code   VARCHAR2 ( 15 )
  , product_name   VARCHAR2 ( 50 )
+ , sort_code      VARCHAR2 ( 15 )
  , sort_name      VARCHAR2 ( 50 )
+ , measure_code   VARCHAR2 ( 15 )
  , measure        VARCHAR2 ( 50 )
  , quantity       NUMBER ( 10, 2 )
  , price          NUMBER ( 15, 2 )
@@ -14,9 +17,33 @@ CREATE TABLE temp_products
 TABLESPACE ts_references_ext_data_01;
 
 INSERT INTO temp_products
-   SELECT ROWNUM AS prod_id
+   SELECT UPPER (   SUBSTR ( brand_name
+                           , 1
+                           , 3 )
+                 || SUBSTR ( sort_name
+                           , -3
+                           , 3 )
+                 || '_'
+                 || quantity * 2 )
+             c
         , brand_name
+        , UPPER ( SUBSTR ( sort_name
+                         , 1
+                         , 3 )
+                 || SUBSTR ( sort_name
+                           , -3
+                           , 3 ) )
         , sort_name
+        , UPPER ( SUBSTR ( ( (   SUBSTR ( measure
+                                        , 1
+                                        , 3 )
+                              || SUBSTR ( measure
+                                        , -1
+                                        , 1 )
+                              || '_'
+                              || quantity * 2 ) )
+                         , 1
+                         , 15 ) )
         , measure
         , quantity
         , price
