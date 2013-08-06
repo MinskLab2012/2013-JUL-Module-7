@@ -1,58 +1,49 @@
-  SELECT tariff_type
+SELECT event_dt
+       , tariff_type
        , tariff_name
-       , event_dt
-       , am_sum
-       , par_sum
-       , prg
+       , SUM ( am_sum )
+       , SUM ( count_tr )
+       , SUM ( profit )
+       , SUM ( prg )
     FROM (  SELECT event_dt
                  , tariff_type
                  , tariff_name
-                 , ROUND ( SUM ( par_sum )
-                         , 2 )
-                      par_sum
-                 , ROUND ( SUM ( am_sum )
-                         , 2 )
-                      am_sum
-                 , ROUND ( SUM ( profit )
-                         , 2 )
-                      profit
-                 , ROUND ( SUM ( count_tr )
-                         , 2 )
-                      count_tr
+                 , am_sum
+                 , count_tr
+                 , profit
+                 , prg
               FROM (  SELECT TRUNC ( TO_DATE ( event_dt
-                                             , 'dd-mon-yyyy' )
+                                             , 'dd-mon-yy' )
                                    , 'month' )
                                 event_dt
                            , tariff_type
                            , tariff_name
+                           , tariff_payment_sum
                            , SUM ( SUM ( payment_sum / currency_to_dollar ) ) OVER (PARTITION BY tariff_type) par_sum
                            , ROUND ( SUM ( payment_sum / currency_to_dollar )
                                    , 2 )
                                 am_sum
                            , COUNT ( payment_sum / currency_to_dollar ) count_tr
-                           , ROUND ( SUM ( ( payment_sum / currency_to_dollar ) * tariff_payment_sum / 100 )
-                                   , 2 )
-                                profit
                         FROM u_dw_ext_references.tmp_transactions_info
                        WHERE tariff_type IN ('Local Transfer', 'International Transfer')
-                         AND tariff_name IN ('Small Transfer')
-                         AND event_dt >= TRUNC ( TO_DATE ( '01-APR-2007'
-                                                         , 'dd-mon-yyyy' )
-                                               , 'month' )
-                         AND event_dt <= (TRUNC ( TO_DATE ( ADD_MONTHS ( TO_DATE ( '01-APR-2008'
-                                                                                 , 'dd-mon-yyyy' )
-                                                                       , 1 ) )
-                                                , 'month' )
-                                          - 1)
-                    GROUP BY (tariff_type, tariff_name, event_dt))
-          GROUP BY (tariff_type, tariff_name, event_dt)) t
-MODEL RETURN UPDATED ROWS
-   PARTITION BY ( tariff_type, tariff_name )
-   DIMENSION BY ( event_dt )
-   MEASURES ( 0 prg, am_sum, par_sum )
-   RULES AUTOMATIC ORDER
-      ( prg [event_dt] = ROUND ( ( 100 * am_sum[CV ( event_dt )] / par_sum[CV ( event_dt )] )
-                               , 5 ) )
-ORDER BY 1
-       , 2
-       , 3;
+                         AND tariff_name IN ('Small Transfer', 'Temperate Transfer')
+                         AND TO_CHAR ( TRUNC ( event_dt
+                                             , 'YYYY' )
+                                     , 'YYYY' ) IN ('2012')
+                    GROUP BY (tariff_type, tariff_name, TRUNC ( TO_DATE ( event_dt
+                                                                        , 'dd-mon-yy' )
+                                                              , 'month' ), tariff_payment_sum))
+          MODEL RETURN UPDATED ROWS
+             PARTITION BY ( tariff_type, tariff_name )
+             DIMENSION BY ( event_dt )
+             MEASURES ( 0 prg, 0 profit, am_sum, par_sum, count_tr, tariff_payment_sum )
+             RULES AUTOMATIC ORDER
+                ( prg [event_dt] = ROUND ( ( 100 * am_sum[CV ( event_dt )] / par_sum[CV ( event_dt )] )
+                                         , 5 ),
+                profit [event_dt] = ROUND ( ( count_tr[CV ( event_dt )] * tariff_payment_sum[CV ( event_dt )] / 100 )
+                                          , 2 ) )
+          ORDER BY 2
+                 , 1
+                 , 3)
+GROUP BY ROLLUP ( ( event_dt, tariff_name ) )
+       , tariff_type;
