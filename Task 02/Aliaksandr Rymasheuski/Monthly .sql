@@ -17,4 +17,4 @@
                                      , 'MM/DD/YYYY' )
      AND cost < price
 GROUP BY ROLLUP ( brand, customer_country )
-  HAVING SUM ( price - cost ) > 100000;
+  ;

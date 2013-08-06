@@ -18,6 +18,5 @@
                                    , 'MM/DD/YYYY' )
      AND cost < price
 GROUP BY CUBE ( customer_country, brand )
-  HAVING SUM ( price - cost ) > 20000
-     AND GROUPING_ID ( customer_country
+  HAVING GROUPING_ID ( customer_country
                      , brand ) IN (0, 2, 3);
