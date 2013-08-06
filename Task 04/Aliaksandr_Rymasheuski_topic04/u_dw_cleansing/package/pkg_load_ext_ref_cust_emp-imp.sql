@@ -1,3 +1,4 @@
+/* Formatted on 8/6/2013 9:32:56 AM (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_load_ext_ref_cust_emp
 AS
    --load cities (Variable Cursor and FORALL Bulk Insertion )
@@ -17,22 +18,16 @@ AS
       citycoll2      cityset;
    BEGIN
       OPEN city_cv FOR --dataset with brand new cities (should insert)
-         SELECT cc.customer_city
-              , geo.geo_id
-           FROM    (SELECT DISTINCT customer_city
-                                  , customer_country
-                      FROM u_sa_data.contracts
-                    UNION
-                    SELECT DISTINCT office_city
-                                  , office_country
-                      FROM u_sa_data.contracts) cc
+         SELECT DISTINCT cc.capital AS customer_city
+                       , geo.geo_id
+           FROM    u_sa_data.tmp_countries_city cc
                 JOIN
                    (SELECT geo_id
                          , country_desc
                       FROM u_dw_references.lc_countries) geo
-                ON ( cc.customer_country = geo.country_desc )
-          WHERE cc.customer_city NOT IN (SELECT DISTINCT city_desc
-                                           FROM u_dw.cities);
+                ON ( cc.country = geo.country_desc )
+          WHERE cc.capital NOT IN (SELECT DISTINCT city_desc
+                                     FROM u_dw.cities);
 
       FETCH city_cv
       BULK COLLECT INTO citycoll1;
@@ -48,22 +43,16 @@ AS
                      , SYSDATE );
 
       OPEN city_cv FOR --dataset with the same cities names (should  update if geo_id was changed)
-         SELECT cc.customer_city
-              , geo.geo_id
-           FROM    (SELECT DISTINCT customer_city
-                                  , customer_country
-                      FROM u_sa_data.contracts
-                    UNION
-                    SELECT DISTINCT office_city
-                                  , office_country
-                      FROM u_sa_data.contracts) cc
+         SELECT DISTINCT cc.capital AS customer_city
+                       , geo.geo_id
+           FROM    u_sa_data.tmp_countries_city cc
                 JOIN
                    (SELECT geo_id
                          , country_desc
                       FROM u_dw_references.lc_countries) geo
-                ON ( cc.customer_country = geo.country_desc )
-          WHERE cc.customer_city IN (SELECT DISTINCT city_desc
-                                       FROM u_dw.cities);
+                ON ( cc.country = geo.country_desc )
+          WHERE cc.capital IN (SELECT DISTINCT city_desc
+                                 FROM u_dw.cities);
 
       FETCH city_cv
       BULK COLLECT INTO citycoll2;
@@ -80,5 +69,4 @@ AS
       COMMIT;
    END load_cities;
 
-  
-END pkg_load_ext_ref_cust_emp;
+  END pkg_load_ext_ref_cust_emp;

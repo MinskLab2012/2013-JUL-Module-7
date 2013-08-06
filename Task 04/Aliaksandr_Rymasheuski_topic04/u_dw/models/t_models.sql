@@ -29,28 +29,3 @@ ALTER TABLE models
       REFERENCES u_dw.brands (brand_id);
 
 GRANT DELETE,INSERT,UPDATE,SELECT ON models TO u_dw_cleansing;
-
-
-select * from MODELS; where update_dt is not null;
-
-truncate table models;
-
-(SELECT DISTINCT md.model_code
-            , br.brand_desc
-            , md.model_desc 
-FROM u_dw.models md JOIN u_dw.brands br ON (md.brand_id=br.brand_id)
-MINUS
-SELECT DISTINCT model_id
-            , brand
-            , model
-FROM u_sa_data.contracts)
-UNION ALL
-(SELECT DISTINCT model_id
-            , brand
-            , model
-FROM u_sa_data.contracts
-MINUS
-SELECT DISTINCT md.model_code
-            , br.brand_desc
-            , md.model_desc 
-FROM u_dw.models md JOIN u_dw.brands br ON (md.brand_id=br.brand_id));

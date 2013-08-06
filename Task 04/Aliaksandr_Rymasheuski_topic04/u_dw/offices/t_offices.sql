@@ -26,4 +26,3 @@ ALTER TABLE OFFICES
 
 GRANT DELETE,INSERT,UPDATE,SELECT ON OFFICES TO u_dw_cleansing;
 
-select * from offices;

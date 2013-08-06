@@ -1,6 +1,6 @@
-/* Formatted on 8/1/2013 6:53:32 PM (QP5 v5.139.911.3011) */
-ALTER TABLE models
-   DROP CONSTRAINT fk_models_reference_brands;
+/* Formatted on 8/6/2013 1:28:12 PM (QP5 v5.139.911.3011) */
+--ALTER TABLE models
+--   DROP CONSTRAINT fk_models_reference_brands;
 
 DROP TABLE brands CASCADE CONSTRAINTS;
 
@@ -23,27 +23,4 @@ CREATE TABLE brands
 GRANT DELETE,INSERT,UPDATE,SELECT ON brands TO u_dw_cleansing;
 
 
-truncate table brands;
-select * from brands;
 
-
-
-
-
-(SELECT brand_code
-            , brand_desc 
-FROM u_dw.brands
-MINUS
-SELECT DISTINCT 
-            brand_id
-            , brand
-FROM u_sa_data.contracts)
-UNION ALL
-(SELECT DISTINCT 
-            brand_id
-            , brand
-FROM u_sa_data.contracts
-MINUS
-SELECT brand_code
-            , brand_desc 
-FROM u_dw.brands);
