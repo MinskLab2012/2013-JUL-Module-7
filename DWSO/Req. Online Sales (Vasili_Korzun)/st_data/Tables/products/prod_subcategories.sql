@@ -26,7 +26,12 @@ create table  prod_subcategories
     update_dt           DATE,
     localization_id     NUMBER(10,0)         not null,
    constraint PK_PROD_SUBCATEGORIES primary key ( prod_subcategory_id ,  localization_id )
-)
+);
+/
+
+alter table  prod_subcategories 
+   add constraint FK_PROD_SUB_REFERENCE_PROD_CAT foreign key ( prod_category_id ,  localization_id )
+      references  prod_categories  ( prod_category_id ,  localization_id );
 /
 
 create sequence prod_subcategories_seq
@@ -38,10 +43,7 @@ minvalue 1
  /
 
 
-alter table  prod_subcategories 
-   add constraint FK_PROD_SUB_REFERENCE_PROD_CAT foreign key ( prod_category_id ,  localization_id )
-      references  prod_categories  ( prod_category_id ,  localization_id )
-/
+
 
 grant insert on prod_subcategories to u_dw_ext_references
 /

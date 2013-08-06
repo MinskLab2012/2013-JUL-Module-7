@@ -89,8 +89,8 @@ INSERT INTO st.lc_ports lc ( lc.port_id
               , t.contact_tel = in_t_cust ( i ).cust_tel
               , t.last_update_dt = SYSDATE
           WHERE t.port_id = (select port_id from st.t_ports where port_code=in_t_cust ( i ).port_identifier)
-            AND  t.pier_code != in_t_cust ( i ).pier_code
-            AND t.contact_tel != in_t_cust ( i ).cust_tel;
+            AND  (t.pier_code != in_t_cust ( i ).pier_code
+            OR t.contact_tel != in_t_cust ( i ).cust_tel);
    forall i in indices of in_t_cust
          UPDATE st.lc_ports lc
             SET lc.contact_person = in_t_cust ( i ).cnt_per
@@ -102,11 +102,11 @@ INSERT INTO st.lc_ports lc ( lc.port_id
                        FROM st.localization
                       WHERE localization_id = curloc )
               , lc.last_insert_dt = SYSDATE
-          WHERE lc.port_id = in_t_cust ( i ).port_identifier
+          WHERE lc.port_id = (select port_id from st.t_ports where port_code=in_t_cust ( i ).port_identifier)
 and lc.contact_person !=in_t_cust ( i ).cnt_per
-              and  lc.port_coutry != in_t_cust ( i ).cust_country
-              and lc.port_city !=in_t_cust ( i ).cust_city
-              and lc.port_address != in_t_cust ( i ).cust_street;
+              and  (lc.port_coutry != in_t_cust ( i ).cust_country
+              or lc.port_city !=in_t_cust ( i ).cust_city
+              or lc.port_address != in_t_cust ( i ).cust_street);
    CLOSE cur_c2;
    commit;
 END load_t_and_lc_ports;

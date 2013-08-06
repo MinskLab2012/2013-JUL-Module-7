@@ -118,7 +118,6 @@ open cur_c for sql_statement;
 curid := DBMS_SQL.TO_CURSOR_NUMBER(cur_c);
 DBMS_SQL.DESCRIBE_COLUMNS(curid, colcnt, desctab);
 
-
 dbms_sql.define_column(curid, 1, pc.p_id);
 dbms_sql.define_column(curid, 2, pc.first_name, 50);
 dbms_sql.define_column(curid, 3, pc.last_name, 50);
@@ -153,10 +152,8 @@ dbms_sql.column_value(curid, 5, pc.email);
           WHERE st.customer_id = pc.p_id
             AND st.email != pc.email;
       ELSE
-         EXIT;
+         raise_application_error(-20123, 'Something wrong with procedure routine');
       END IF;
-      if mod (rows_processed, 10000) = 0 then dbms_output.put_line(rows_processed||': score!');
-      end if;
 end loop;
 commit;
 exception

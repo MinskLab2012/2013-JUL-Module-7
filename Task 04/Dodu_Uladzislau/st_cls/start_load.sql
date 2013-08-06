@@ -1,6 +1,11 @@
 begin
 PKG_LOAD_DIM_SHIPS.LOAD_T_SHIPS;
 pkg_load_dim_products_scd.load_t_and_lc_categories;
+pkg_load_dim_products_scd.load_t_and_lc_products_act;
 pkg_load_dim_ports.load_t_and_lc_ports;
 PKG_LOAD_DIM_CUSTOMERS.LOAD_T_AND_LC_CUSTOMERS;
+pkg_load_dim_insurances.load_t_insurance_type;
+pkg_load_dim_insurances.load_t_and_lc_insurances;
+pkg_load_t_trans.load_t_trans;
 end;
+

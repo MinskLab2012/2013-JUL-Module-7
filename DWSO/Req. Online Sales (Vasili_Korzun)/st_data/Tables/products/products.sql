@@ -26,10 +26,13 @@ create table  products
     update_dt           DATE,
     localization_id     NUMBER(10,0)         not null,
    constraint PK_PRODUCTS primary key ( prod_id ,  localization_id )
-)
+);
 /
 
-
+alter table  products 
+   add constraint FK_PRODUCTS_REFERENCE_PROD_SUB foreign key ( prod_subcategory_id ,  localization_id )
+      references  prod_subcategories  ( prod_subcategory_id ,  localization_id );
+/
 
 create sequence products_seq
 minvalue 1
@@ -39,10 +42,7 @@ minvalue 1
  NOCYCLE
  /
  
-alter table  products 
-   add constraint FK_PRODUCTS_REFERENCE_PROD_SUB foreign key ( prod_subcategory_id ,  localization_id )
-      references  prod_subcategories  ( prod_subcategory_id ,  localization_id )
-/
+
 
 grant insert on products to u_dw_ext_references
 /

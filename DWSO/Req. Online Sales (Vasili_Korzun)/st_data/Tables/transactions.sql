@@ -14,15 +14,13 @@ create table  transactions
     event_dt            DATE                 not null,
     transaction_id      NUMBER(10,0)         not null,
     prod_id             NUMBER(10,0),
-    pro_localization_id  NUMBER(10,0),
     customer_id         NUMBER(7,0)          not null,
     country_geo_id      NUMBER(22,0),
     payment_system_id   NUMBER(5,0),
     delivery_system_id  NUMBER(5,0),
-    localization_id     NUMBER(10,0),
     amount_sold                NUMBER(10,0),
     status_id           NUMBER(3,0),
-   constraint PK_TRANSACTIONS primary key ( event_dt ,  transaction_id ),
+   constraint PK_TRANSACTIONS primary key ( event_dt ,  transaction_id )
 /*
    constraint FK_TRANSACT_REFERENCE_CUSTOMER foreign key ( customer_id )
          references  customers  ( customer_id ),
@@ -33,8 +31,6 @@ create table  transactions
    constraint FK_TRANSACT_REFERENCE_T_GEO_OB foreign key ( country_geo_id )
          references  t_geo_objects  ( geo_id ),
          */
-   constraint FK_TRANSACT_REFERENCE_PRODUCTS foreign key ( prod_id ,  pro_localization_id )
-         references  products  ( prod_id ,  localization_id )
 
 );
 
