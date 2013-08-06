@@ -1,11 +1,11 @@
-ALTER TABLE contracts
-   DROP CONSTRAINT fk_contract_reference_employee;
+--ALTER TABLE contracts
+--   DROP CONSTRAINT fk_contract_reference_employee;
 
-ALTER TABLE employees
-   DROP CONSTRAINT fk_employee_reference_offices;
-
-ALTER TABLE employees_actions
-   DROP CONSTRAINT fk_employee_reference_employee;
+--ALTER TABLE employees
+--   DROP CONSTRAINT fk_employee_reference_offices;
+--
+--ALTER TABLE employees_actions
+--   DROP CONSTRAINT fk_employee_reference_employee;
 
 DROP TABLE employees CASCADE CONSTRAINTS;
 
@@ -34,3 +34,4 @@ ALTER TABLE employees
 
 
 GRANT DELETE,INSERT,UPDATE,SELECT ON employees TO u_dw_cleansing;
+
