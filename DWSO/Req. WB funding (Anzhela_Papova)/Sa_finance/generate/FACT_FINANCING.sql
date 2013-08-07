@@ -1,9 +1,9 @@
--DROP TABLE fact_financing CASCADE CONSTRAINTS PURGE;
+--DROP TABLE fact_financing CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE fact_financing
 (
    date_dt        DATE
- , country        VARCHAR2 ( 50 BYTE )
+ , country        VARCHAR2 ( 100 BYTE )
  , program_code   VARCHAR2 ( 16 BYTE )
  , fin_source_id  NUMBER
  , amount         NUMBER
@@ -19,7 +19,7 @@ INSERT INTO fact_financing
                  , cntr.country_name AS country
                  , SUBSTR ( dep.department_name
                           , 1
-                          , 4 )
+                          , 6 )
                       AS program_code
                  , ROUND ( dbms_random.VALUE ( 1
                                              , 4 ) )

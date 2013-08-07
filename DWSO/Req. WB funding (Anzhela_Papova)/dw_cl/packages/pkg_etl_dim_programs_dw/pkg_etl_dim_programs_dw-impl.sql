@@ -1,4 +1,4 @@
-/* Formatted on 03.08.2013 20:18:51 (QP5 v5.139.911.3011) */
+/* Formatted on 07.08.2013 16:58:16 (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_etl_dim_programs_dw
 AS
    -- Procedure Reload Data about Managers From Source table Programs
@@ -80,70 +80,86 @@ AS
                                        , program_code
                                        , program_desc
                                        , program_purpose
-                                       , insert_dt )
+                                       , valid_from
+                                       , insert_dt  )
             SELECT prg_seq.NEXTVAL
                  , cls.program_code
                  , cls.program_name
                  , cls.program_purpose
                  , SYSDATE
+                 , SYSDATE
               FROM (SELECT c_tmp.program_code program_code
                          , c_tmp.program_name program_name
                          , c_tmp.program_purpose program_purpose
                       FROM DUAL) cls
-             WHERE cls.program_name NOT IN (SELECT program_desc
-                                              FROM dw.t_programs
-                                             WHERE dw.t_programs.program_code = cls.program_code)
-                OR  cls.program_purpose NOT IN (SELECT program_purpose
-                                                  FROM dw.t_programs
-                                                 WHERE dw.t_programs.program_code = cls.program_code);
+             WHERE cls.program_code NOT IN (SELECT program_code
+                                              FROM dw.t_programs);
+   
+             INSERT into dw.t_programs trg ( program_id
+                                       , program_code
+                                       , program_desc
+                                       , program_purpose
+                                      , valid_from
+                                        , insert_dt )
+            select dw.t_programs.program_id
+                 , cls.program_code
+                 , cls.program_name
+                 , cls.program_purpose
+                 , SYSDATE
+                   , SYSDATE
+              from (select c_tmp.program_code program_code
+                         , c_tmp.program_name program_name
+                         , c_tmp.program_purpose program_purpose
+                      from DUAL) cls, dw.t_programs
+             where cls.program_code = dw.t_programs.program_code  and
+                           cls.program_name <> dw.t_programs.program_desc;
+         EXIT when c_prg%NOTFOUND;
+      end loop;
 
-         EXIT WHEN c_prg%NOTFOUND;
-      END LOOP;
-
-      CLOSE c_prg;
+     close c_prg;
 
       --Commit Result
-      COMMIT;
-   END load_programs;
+      commit;
+   end load_programs;
 
 
    -- Procedure load Data about programs' managers From Source table Programs
-   PROCEDURE load_program_manager
-   AS
-      TYPE var_cur IS REF CURSOR;
+   procedure load_program_manager
+   as
+      TYPE var_cur is REF cursor;
 
-      curid          NUMBER;
+      curid          number;
       c_prg_man      var_cur;
       tmp_rec        dw.t_program_manager%ROWTYPE;
    BEGIN
-      OPEN c_prg_man FOR
-         SELECT p.program_id
+      open c_prg_man for
+         select p.program_id
               , m.manager_id
               , s.start_date
               , SYSDATE
-           FROM dw.t_programs p
+           from dw.t_programs p
               , dw.t_managers m
               , sa_finance.programs s
-          WHERE s.program_code = p.program_code
-            AND s.manager_fn || ' ' || s.manager_ln = m.manager_desc
-            AND p.program_id || m.manager_id || s.start_date NOT IN (SELECT program_id || manager_id || valid_from
-                                                                       FROM dw.t_program_manager);
+          where s.program_code = p.program_code
+            and s.manager_fn || ' ' || s.manager_ln = m.manager_desc
+            and p.program_id || m.manager_id || s.start_date NOT IN (select program_id || manager_id || valid_from
+                                                                       from dw.t_program_manager);
 
       --Insert Source data
-      LOOP
-         FETCH c_prg_man
-         INTO tmp_rec;
+      loop
+         fetch c_prg_man
+         into tmp_rec;
 
-         EXIT WHEN c_prg_man%NOTFOUND;
+         EXIT when c_prg_man%NOTFOUND;
 
-         INSERT INTO dw.t_program_manager
-              VALUES tmp_rec;
-      END LOOP;
+         insert into dw.t_program_manager
+              values tmp_rec;
+      end loop;
 
       curid       := dbms_sql.to_cursor_number ( c_prg_man );
       dbms_sql.close_cursor ( curid );
       --Commit Result
-      COMMIT;
-   END load_program_manager;
-END pkg_etl_dim_programs_dw;
+      commit;
+   end load_program_manager;
+end pkg_etl_dim_programs_dw;
 /

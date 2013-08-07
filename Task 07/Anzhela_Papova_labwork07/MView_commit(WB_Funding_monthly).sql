@@ -1,22 +1,25 @@
-/* Formatted on 06.08.2013 16:24:15 (QP5 v5.139.911.3011) */
+/* Formatted on 07.08.2013 8:58:20 (QP5 v5.139.911.3011) */
 ALTER SESSION SET query_rewrite_enabled = TRUE;
 ALTER SESSION SET query_rewrite_integrity = enforced;
 
 CREATE MATERIALIZED VIEW LOG ON  fact_financing
-   WITH PRIMARY KEY
+   WITH ROWID (date_dt, country,  program_code ,
+  fin_source_id , amount, loan_charge,
+  end_date)
    INCLUDING NEW VALUES;
 
 CREATE MATERIALIZED VIEW LOG ON  programs
-   WITH PRIMARY KEY
+   WITH ROWID  (program_code, program_name, program_purpose ,
+  manager_fn,  manager_ln,  start_date, end_date)
    INCLUDING NEW VALUES;
 
 CREATE MATERIALIZED VIEW LOG ON  finance_sources
-   WITH PRIMARY KEY
+   WITH ROWID (fin_source_id, fin_source_name)
    INCLUDING NEW VALUES;
 
 CREATE MATERIALIZED VIEW mv_funding_monthly
 BUILD IMMEDIATE
-REFRESH ON COMMIT
+REFRESH FAST ON COMMIT
 ENABLE QUERY REWRITE
 AS
   SELECT
@@ -28,7 +31,7 @@ AS
        ,  fs.fin_source_name AS fin_source
        , SUM ( ff.amount ) AS fin_amount
        , COUNT (ff.amount) AS count_am
-    FROM fact_financing ff
+          FROM fact_financing ff
        , (SELECT program_code
                , program_name AS program_desc
                , manager_fn || ' ' || manager_ln AS manager_desc

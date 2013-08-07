@@ -1,15 +1,12 @@
-alter session set query_rewrite_enabled = true;
-alter session set query_rewrite_integrity = enforced;
+/* Formatted on 06.08.2013 13:43:37 (QP5 v5.139.911.3011) */
+ALTER SESSION SET query_rewrite_enabled = TRUE;
+ALTER SESSION SET query_rewrite_integrity = enforced;
 
-
-drop  materialized view tmp_rep
-
-
-create materialized view tmp_rep 
-build immediate
-refresh on commit
-enable query rewrite
-as 
+CREATE MATERIALIZED VIEW MV_Funding_quarterly
+BUILD IMMEDIATE
+REFRESH ON DEMAND
+ENABLE QUERY REWRITE
+AS
   SELECT TRUNC ( tmp.event_dt
                , 'Q' )
             AS quarter_id

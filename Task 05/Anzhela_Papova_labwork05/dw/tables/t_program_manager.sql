@@ -11,9 +11,9 @@ CREATE TABLE t_program_manager
 (
    program_id     NUMBER NOT NULL
  , manager_id     NUMBER NOT NULL
- , valid_from     DATE NOT NULL
+ , start_date     DATE NOT NULL
  , insert_dt      DATE
- , CONSTRAINT pk_t_pr PRIMARY KEY ( program_id, manager_id, valid_from )
+ , CONSTRAINT pk_t_pr PRIMARY KEY ( program_id, manager_id, start_date )
 );
 
 ALTER TABLE t_program_manager
