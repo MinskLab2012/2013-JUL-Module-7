@@ -1,0 +1,6 @@
+
+DROP TABLE "U_DW_STAGE"."T_OPERATIONS" CASCADE CONSTRAINTS
+/
+
+START t_operations.sql
+/
