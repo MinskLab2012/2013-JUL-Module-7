@@ -1,7 +1,7 @@
 /* Formatted on 02.08.2013 21:11:31 (QP5 v5.139.911.3011) */
-DROP TABLE  temp_companies;
+DROP TABLE  cls_companies;
 
-CREATE TABLE temp_companies
+CREATE TABLE cls_companies
 (
    company_code   VARCHAR2 ( 20 )
  , company_name   VARCHAR2 ( 70 )
@@ -15,7 +15,7 @@ TABLESPACE ts_references_ext_data_01;
 
 --companies
 
-INSERT INTO temp_companies
+INSERT INTO cls_companies
    SELECT UPPER ( SUBSTR ( (   SUBSTR ( company_name
                                       , 1
                                       , 5 )
@@ -60,7 +60,7 @@ INSERT INTO temp_companies
 
 COMMIT;
 
-UPDATE temp_companies
+UPDATE cls_companies
    SET comp_status  = 'headquarters'
  WHERE company_code IN (SELECT comp
                           FROM (  SELECT company_name
@@ -68,7 +68,7 @@ UPDATE temp_companies
                                     FROM temp_companies
                                 GROUP BY company_name));
 
-UPDATE temp_companies
+UPDATE cls_companies
    SET comp_status_code = 'HAEERS'
  WHERE company_code IN (SELECT comp
                           FROM (  SELECT company_name
@@ -79,10 +79,3 @@ UPDATE temp_companies
 
 
 COMMIT;
-
-
-SELECT COUNT ( DISTINCT comp_status )
-  FROM temp_companies
-UNION ALL
-SELECT COUNT ( DISTINCT comp_status_code )
-  FROM temp_companies;

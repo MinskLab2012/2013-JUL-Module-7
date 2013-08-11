@@ -5,9 +5,9 @@
        , country_desc
     FROM u_dw_references.lc_countries );*/
 
-DROP TABLE tmp_orders PURGE;
+DROP TABLE cls_orders PURGE;
 
-CREATE TABLE tmp_orders
+CREATE TABLE cls_orders
 (
    order_code     NUMBER ( 10 )
  , event_dt       DATE
@@ -16,7 +16,7 @@ CREATE TABLE tmp_orders
 )
 TABLESPACE ts_references_ext_data_01;
 
-INSERT INTO tmp_orders
+INSERT INTO cls_orders
    SELECT DISTINCT 10000 + ROWNUM AS order_id
                  , TRUNC ( SYSTIMESTAMP )
                    - dbms_random.VALUE ( 1
@@ -37,7 +37,7 @@ INSERT INTO tmp_orders
 COMMIT;
 
 
-INSERT INTO tmp_orders
+INSERT INTO cls_orders
    SELECT DISTINCT ROWNUM AS order_id
                  , TRUNC ( SYSTIMESTAMP )
                    - dbms_random.VALUE ( 1
@@ -53,7 +53,8 @@ INSERT INTO tmp_orders
                       AS country_id
      FROM (    SELECT ROWNUM AS rn
                  FROM DUAL
-           CONNECT BY ROWNUM <= 10000) tr;
+           CONNECT BY ROWNUM <= 10000) tr
+           ;
 
 COMMIT;
 
@@ -61,7 +62,7 @@ COMMIT;
   FROM tmp_orders;*/
 
 SELECT COUNT ( * )
-  FROM tmp_orders
+  FROM cls_orders
 UNION ALL
-SELECT COUNT ( order_code )
-  FROM tmp_orders;
+SELECT COUNT ( distinct order_code )
+ FROM cls_orders;

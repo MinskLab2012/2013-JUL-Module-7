@@ -1,9 +1,9 @@
 /* Formatted on 02.08.2013 21:11:10 (QP5 v5.139.911.3011) */
-DROP TABLE temp_products;
+DROP TABLE cls_products;
 
 --products
 
-CREATE TABLE temp_products
+CREATE TABLE cls_products
 (
    product_code   VARCHAR2 ( 15 )
  , product_name   VARCHAR2 ( 50 )
@@ -16,7 +16,7 @@ CREATE TABLE temp_products
 )
 TABLESPACE ts_references_ext_data_01;
 
-INSERT INTO temp_products
+INSERT INTO cls_products
    SELECT UPPER (   SUBSTR ( brand_name
                            , 1
                            , 3 )
@@ -24,7 +24,7 @@ INSERT INTO temp_products
                            , -3
                            , 3 )
                  || '_'
-                 || quantity * 2 )
+                 || rownum )
              c
         , brand_name
         , UPPER ( SUBSTR ( sort_name
@@ -109,6 +109,6 @@ INSERT INTO temp_products
                                               SELECT 'liters' AS measure
                                                    , 20 AS quantity
                                                 FROM DUAL)) meas_t
-                             ON meas_t.m_id = br.meas_id));
+                             ON meas_t.m_id = br.meas_id))   ;
 
 COMMIT;

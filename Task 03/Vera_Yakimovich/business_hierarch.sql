@@ -21,9 +21,9 @@
                                                                    , 3 AS l_3
                                                                    ))) piv
          LEFT JOIN lc_countries lcc
-            ON piv.roo = lcc.geo_id AND lcc.localization_id = (:loc_param)
+            ON piv.roo = lcc.geo_id AND lcc.localization_id = 1
          LEFT JOIN lc_geo_regions lcr
-            ON lcr.geo_id = piv.l_3 AND  lcr.localization_id = (:loc_param)
+            ON lcr.geo_id = piv.l_3 AND  lcr.localization_id = 1
          LEFT JOIN lc_geo_parts lcp
-            ON lcp.geo_id = piv.l_2 AND  lcp.localization_id = (:loc_param)  
+            ON lcp.geo_id = piv.l_2 AND  lcp.localization_id = 1
 ORDER BY roo;

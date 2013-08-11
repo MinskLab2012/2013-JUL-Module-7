@@ -33,18 +33,19 @@
                            SELECT NULL
                                 , geo_id
                                 , NULL
+                                , null
                              FROM lc_geo_parts) gol
                           LEFT JOIN t_geo_objects gob
                              ON gol.child_geo_id = gob.geo_id
                           LEFT JOIN lc_countries lcc
                              ON gol.child_geo_id = lcc.geo_id
-                            AND lcc.localization_id = (:loc_param)
+                            AND lcc.localization_id = 1
                           LEFT JOIN lc_geo_regions lcr
                              ON lcr.geo_id = gol.child_geo_id
-                            AND lcr.localization_id = (:loc_param)
+                            AND lcr.localization_id = 1
                           LEFT JOIN lc_geo_parts lcp
                              ON lcp.geo_id = gol.child_geo_id
-                            AND lcp.localization_id = (:loc_param)) gol
+                            AND lcp.localization_id = 1) gol
        START WITH parent_geo_id IS NULL
        CONNECT BY PRIOR child_geo_id = parent_geo_id
 ORDER SIBLINGS BY child_geo_id;

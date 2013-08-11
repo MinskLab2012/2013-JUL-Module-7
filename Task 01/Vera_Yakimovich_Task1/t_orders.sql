@@ -71,12 +71,12 @@ BEGIN
                       , country_id
                       , ROUND ( dbms_random.VALUE ( 1
                                                   , ( SELECT COUNT ( * )
-                                                        FROM temp_products ) ) )
+                                                        FROM cls_products ) ) )
                            AS prod_id
                       , ROUND ( dbms_random.VALUE ( 1
                                                   , 50 ) )
                            AS set_quantity
-                   FROM tmp_orders) temp_orders
+                   FROM cls_orders) temp_orders
               , (SELECT ROWNUM AS comp_id
                       , company_code
                       , company_name
@@ -84,7 +84,7 @@ BEGIN
                       , country_desc
                       , comp_status_code
                       , comp_status
-                   FROM temp_companies) tmp_companies
+                   FROM cls_companies) tmp_companies
               , (SELECT ROWNUM AS prod_id
                       , product_code
                       , product_name
@@ -94,19 +94,22 @@ BEGIN
                       , measure
                       , quantity
                       , price
-                   FROM temp_products) tmp_products
+                   FROM cls_products) tmp_products
               , (SELECT ROWNUM AS country_id
                       , country_desc
                       , country_code_a3 AS country_code
                    FROM u_dw_references.lc_countries) temp_cntr
           WHERE temp_orders.company_id = tmp_companies.comp_id
             AND temp_orders.prod_id = tmp_products.prod_id
-            AND temp_orders.country_id = temp_cntr.country_id;
+            AND temp_orders.country_id = temp_cntr.country_id
+            ORDER BY country_code NULLS FIRST
+            ;
 
 
       COMMIT;
    END LOOP;
 END;
 
-SELECT COUNT ( * )
+SELECT count( *)
   FROM t_orders;
+  

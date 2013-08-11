@@ -1,3 +1,4 @@
+/* Formatted on 08.08.2013 4:57:36 (QP5 v5.139.911.3011) */
 --drop MATERIALIZED VIEW LOG ON u_dw_ext_references.t_orders;
 CREATE MATERIALIZED VIEW LOG ON u_dw_ext_references.t_orders
 WITH ROWID, SEQUENCE (
@@ -25,12 +26,26 @@ tras_id
 )
 INCLUDING NEW VALUES;
 
+/* Formatted on 08.08.2013 4:57:50 (QP5 v5.139.911.3011) */
+DROP MATERIALIZED VIEW report_orders_test;
+CREATE MATERIALIZED VIEW report_orders_test
+TABLESPACE ts_references_ext_data_01
+PARALLEL 4
+BUILD IMMEDIATE
+REFRESH FAST ON COMMIT
+ENABLE QUERY REWRITE
+AS
+SELECT order_code, country_desc,
+country_code,  SUM(total_price)
+ FROM  u_dw_ext_references.t_orders 
+ GROUP BY order_code, country_desc, country_code;
+
 --DROP MATERIALIZED VIEW report_orders;
 CREATE MATERIALIZED VIEW report_orders
 TABLESPACE ts_references_ext_data_01
 PARALLEL 4
 BUILD IMMEDIATE
-REFRESH FAST ON COMMIT
+REFRESH COMPLETE ON COMMIT
 ENABLE QUERY REWRITE
 AS
 SELECT  TRUNC ( event_dt
@@ -55,13 +70,13 @@ SELECT  TRUNC ( event_dt
           , TRUNC ( event_dt
                   , 'month' )
           , country_desc;
-          
-          
 
---UPDATE t_orders SET country_desc = 'Afghanistan--CHECK'
---WHERE country_code = 'AFG';
---COMMIT;
---SELECT * FROM t_orders WHERE country_code = 'AFG';
---
---SELECT * FROM report_orders
---ORDER BY 4;
+
+
+UPDATE t_orders SET country_desc = 'Afghanistan--CHECK'
+WHERE country_code = 'AFG';
+COMMIT;
+SELECT * FROM t_orders WHERE country_code = 'AFG';
+
+SELECT * FROM report_orders_test
+ORDER BY 2;
