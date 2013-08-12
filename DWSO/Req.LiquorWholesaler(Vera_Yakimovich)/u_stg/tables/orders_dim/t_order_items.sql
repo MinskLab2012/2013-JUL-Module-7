@@ -1,0 +1,209 @@
+ALTER TABLE U_STG.T_ORDER_ITEMS
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE U_STG.T_ORDER_ITEMS CASCADE CONSTRAINTS;
+
+CREATE TABLE U_STG.T_ORDER_ITEMS
+(
+  EVENT_DT       DATE,
+  ORDER_ITEM_ID  NUMBER(20)                     NOT NULL,
+  ORDER_ID       NUMBER(20),
+  PRODUCT_ID     NUMBER(20),
+  QUANTITY       NUMBER(10),
+  INSERT_DT      DATE,
+  TOTAL_PRICE    NUMBER(20,2)
+)
+TABLESPACE TS_STG_DATA_01
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+PARTITION BY RANGE (EVENT_DT)
+(  
+  PARTITION LESS_2010 VALUES LESS THAN (TO_DATE(' 2012-01-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_ARCHIVE
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q1Y2012 VALUES LESS THAN (TO_DATE(' 2012-04-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2012
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q2Y2012 VALUES LESS THAN (TO_DATE(' 2012-07-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2012
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q3Y2012 VALUES LESS THAN (TO_DATE(' 2012-10-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2012
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q4Y2012 VALUES LESS THAN (TO_DATE(' 2013-01-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2012
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q1Y2013 VALUES LESS THAN (TO_DATE(' 2013-04-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2013
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q2Y2013 VALUES LESS THAN (TO_DATE(' 2013-07-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2013
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q3Y2013 VALUES LESS THAN (TO_DATE(' 2013-10-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2013
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION Q4Y2013 VALUES LESS THAN (TO_DATE(' 2014-01-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_2013
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          8M
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION INC_OTHERS VALUES LESS THAN (MAXVALUE)
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_INC_OTHERS
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                BUFFER_POOL      DEFAULT
+               )
+)
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE UNIQUE INDEX U_STG.PK_T_ORDER_ITEMS ON U_STG.T_ORDER_ITEMS
+(ORDER_ITEM_ID)
+LOGGING
+TABLESPACE TS_STG_DATA_01
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          160K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE U_STG.T_ORDER_ITEMS ADD (
+  CONSTRAINT PK_T_ORDER_ITEMS
+ PRIMARY KEY
+ (ORDER_ITEM_ID)
+    USING INDEX 
+    TABLESPACE TS_STG_DATA_01
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          160K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+               ));
+
+ALTER TABLE U_STG.T_ORDER_ITEMS ADD (
+  CONSTRAINT FK_T_ORDER_T_ORDERS 
+ FOREIGN KEY (ORDER_ID) 
+ REFERENCES U_STG.T_ORDERS (ORDER_ID),
+  CONSTRAINT FK_T_ORDER_T_PRODUC 
+ FOREIGN KEY (PRODUCT_ID) 
+ REFERENCES U_STG.T_PRODUCTS (PRODUCT_ID));
+
+GRANT INSERT, SELECT ON U_STG.T_ORDER_ITEMS TO U_DW_EXT_REFERENCES;
