@@ -1,0 +1,3 @@
+It's such a mess with Tasks 8-11...
+I tried to not to copy same scripts into DWSO folder and Tasks folders.
+Therefore you can find all most important scripts related to DWH project in my DWSO folder.
