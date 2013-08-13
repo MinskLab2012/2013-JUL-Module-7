@@ -1,20 +1,25 @@
-  SELECT DECODE ( GROUPING_ID ( brand
-                              , customer_country )
+  SELECT DECODE ( GROUPING_ID ( cr.brand
+                              , cust.country )
                 , 1, ''
                 , 3, 'Grant total'
-                , customer_country )
+                , cust.country )
             AS customer_country
-       , DECODE ( GROUPING_ID ( brand
-                              , customer_country )
-                , 1, 'Total for ' || brand
-                , brand )
+       , DECODE ( GROUPING_ID ( cr.brand
+                              , cust.country )
+                , 1, 'Total for ' || cr.brand
+                , cr.brand )
             AS brand
-       , to_char(SUM ( price - cost ), '$999,999,999,999') AS profit
+       , TO_CHAR ( SUM ( con.price - cr.cost )
+                 , '$999,999,999,999' )
+            AS profit
        , COUNT ( * ) AS quantity
-    FROM contracts
-   WHERE TRUNC ( event_dt
+    FROM u_sa_data.tmp_contracts con
+         JOIN u_sa_data.tmp_customers cust
+            ON ( con.cust_id = cust.cust_id )
+         JOIN u_sa_data.tmp_cars cr
+            ON ( con.car_id = cr.car_id )
+   WHERE TRUNC ( con.event_dt
                , 'Month' ) = TO_DATE ( '7/1/2013'
                                      , 'MM/DD/YYYY' )
-     AND cost < price
-GROUP BY ROLLUP ( brand, customer_country )
-  ;
+     AND cr.cost < con.price
+GROUP BY ROLLUP ( cr.brand, cust.country );
