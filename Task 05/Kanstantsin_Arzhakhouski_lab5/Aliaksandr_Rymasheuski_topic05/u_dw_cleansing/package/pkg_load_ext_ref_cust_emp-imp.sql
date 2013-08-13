@@ -1,4 +1,4 @@
-/* Formatted on 09.08.2013 20:33:38 (QP5 v5.139.911.3011) */
+/* Formatted on 8/6/2013 9:32:56 AM (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_load_ext_ref_cust_emp
 AS
    --load cities (Variable Cursor and FORALL Bulk Insertion )
@@ -362,31 +362,33 @@ SELECT DISTINCT office_code
                         , of_id
                         , gend
                         , sal );
-
-            INSERT INTO u_dw.employees_actions ea ( ea.emp_id
-                                                  , ea.action_date
-                                                  , ea.action_type_id
-                                                  , ea.new_value_str )
-                 VALUES ( u_dw.sq_employees_id.CURRVAL
-                        , SYSDATE
-                        , 1
-                        , pos );
          ELSIF sal != old_sal THEN
             UPDATE u_dw.employees
-               SET salary       = sal
-               WHERE emp_code=e_id;
-         ELSIF pos != old_pos THEN
-            UPDATE u_dw.employees
-               SET position     = pos
-               WHERE emp_code=e_id;
+               SET salary       = sal;
 
             INSERT INTO u_dw.employees_actions ea ( ea.emp_id
                                                   , ea.action_date
                                                   , ea.action_type_id
-                                                  , ea.new_value_str )
+                                                  , ea.old_salary
+                                                  , ea.new_salary )
                  VALUES ( eid
                         , SYSDATE
                         , 1
+                        , old_sal
+                        , sal );
+         ELSIF pos != old_pos THEN
+            UPDATE u_dw.employees
+               SET position     = pos;
+
+            INSERT INTO u_dw.employees_actions ea ( ea.emp_id
+                                                  , ea.action_date
+                                                  , ea.action_type_id
+                                                  , ea.old_possition
+                                                  , ea.new_possition )
+                 VALUES ( eid
+                        , SYSDATE
+                        , 2
+                        , old_pos
                         , pos );
          END IF;
       END LOOP;

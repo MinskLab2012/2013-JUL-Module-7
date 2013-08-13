@@ -1,0 +1,3 @@
+begin
+pkg_load_geo_links_actions.load_geo_links_actions;
+end;
