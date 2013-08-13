@@ -11,7 +11,7 @@ AS
    schema_name    VARCHAR2 ( 40 );
    grant_statement varchar2(200) default null;
 BEGIN
-   schema_name := 'st_data';
+   schema_name := 'u_dw_ext_references';
 
    FOR tab IN cur_t LOOP
    grant_statement := 'grant select on '|| tab.table_name||' to ' || schema_name ;

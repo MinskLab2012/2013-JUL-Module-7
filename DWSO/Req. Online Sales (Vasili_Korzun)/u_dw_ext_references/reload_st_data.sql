@@ -14,5 +14,3 @@ BEGIN
 
    pkg_load_ext_transactions.load_bulk_insert_transactions;
 END;
-
-

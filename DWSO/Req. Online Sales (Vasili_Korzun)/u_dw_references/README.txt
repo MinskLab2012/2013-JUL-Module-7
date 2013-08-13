@@ -1,1 +1,0 @@
-I used Languages and Locations tables and load packages provided by Kiryl Bucha.

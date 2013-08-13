@@ -36,7 +36,9 @@ AS
       AND tt.product_id = prd.prod_id
       AND tt.user_id = cc.rn;
 
+alter table tmp_orders add primary key (transaction_id);
 
+/*
 
 SELECT DISTINCT TRUNC ( transaction_dt
                       , 'yyyy' )
@@ -60,3 +62,4 @@ GROUP BY TRUNC ( transaction_dt
        , prod_name
 --order by day_id
 ;
+*/

@@ -106,5 +106,5 @@ AS
         , cost
         , status_code
      FROM t_ext_opers;
-     
+     alter table tmrp_opers
      drop table t_ext_opers purge;
