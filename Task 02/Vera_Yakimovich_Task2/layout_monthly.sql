@@ -7,9 +7,9 @@
                                          , SUM ( total_price - ( price ) * set_quantity ) AS income
                                       FROM t_orders
                                      WHERE TRUNC ( event_dt
-                                                 , 'MONTH' ) = TO_DATE ( '01/01/2012'
+                                                 , 'MONTH' ) = TO_DATE ( '01/04/2006'
                                                                    , 'dd/mm/yyyy' )
-                                       AND country_desc = 'Algeria'
+                                       AND country_desc = 'Angola'
                                   GROUP BY TRUNC ( event_dt
                                                  , 'MONTH' )
                                          , country_desc

@@ -65,7 +65,7 @@ UPDATE cls_companies
  WHERE company_code IN (SELECT comp
                           FROM (  SELECT company_name
                                        , MAX ( company_code ) AS comp
-                                    FROM temp_companies
+                                    FROM cls_companies
                                 GROUP BY company_name));
 
 UPDATE cls_companies
@@ -73,7 +73,7 @@ UPDATE cls_companies
  WHERE company_code IN (SELECT comp
                           FROM (  SELECT company_name
                                        , MAX ( company_code ) AS comp
-                                    FROM temp_companies
+                                    FROM cls_companies
                                 GROUP BY company_name));
 
 

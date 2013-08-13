@@ -1,0 +1,1 @@
+For load only customer_load is used. Other procedures are training.
