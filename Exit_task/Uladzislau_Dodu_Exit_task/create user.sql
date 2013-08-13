@@ -1,0 +1,33 @@
+CREATE TABLESPACE cls_dw_star_data DATAFILE 'DW_S_DATA_01.dbf' SIZE 100 M AUTOEXTEND ON NEXT 10M MAXSIZE 500M;
+
+CREATE TABLESPACE dw_start_products_partition_1 DATAFILE 'DW_S_PROD_01.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+CREATE TABLESPACE dw_start_products_partition_2 DATAFILE 'DW_S_PROD_02.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+CREATE TABLESPACE dw_start_products_partition_3 DATAFILE 'DW_S_PROD_03.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+CREATE TABLESPACE dw_start_products_partition_4 DATAFILE 'DW_S_PROD_04.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+CREATE TABLESPACE dw_start_products_partition_5 DATAFILE 'DW_S_PROD_05.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+CREATE TABLESPACE dw_start_ports DATAFILE 'DW_S_ports.dbf' SIZE 10 M AUTOEXTEND ON NEXT 10M MAXSIZE 100M
+
+grant unlimited tablespace dw_start_products_partition_1 to dw_star
+
+
+alter user dw_star quota unlimited on dw_start_products_partition_1
+
+CREATE USER cls_dw_star IDENTIFIED BY pass DEFAULT TABLESPACE cls_dw_star_data QUOTA UNLIMITED ON cls_dw_star_data;
+
+GRANT CONNECT, RESOURCE TO cls_dw_star;
+
+GRANT CREATE VIEW, create materialized view TO cls_dw_star;
+
+CREATE TABLESPACE dw_star_data DATAFILE 'DW_ST_DATA_01.dbf' SIZE 100 M AUTOEXTEND ON NEXT 10 M MAXSIZE 500M;
+
+CREATE USER dw_star IDENTIFIED BY pass DEFAULT TABLESPACE dw_star_data QUOTA UNLIMITED ON dw_star_data;
+
+GRANT CONNECT, RESOURCE TO dw_star;
+
+GRANT CREATE VIEW, create materialized view TO dw_star;
+
