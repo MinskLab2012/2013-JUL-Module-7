@@ -1,3 +1,4 @@
+/* Formatted on 10.08.2013 12:16:12 (QP5 v5.139.911.3011) */
 --DROP TABLE fact_financing CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE fact_financing
@@ -13,7 +14,7 @@ CREATE TABLE fact_financing
 
 INSERT INTO fact_financing
    SELECT DISTINCT TO_DATE ( TRUNC ( dbms_random.VALUE ( 2451010
-                                                       , 2452000 ) )
+                                                       , 2456000 ) )
                            , 'j' )
                       AS date_dt
                  , cntr.country_name AS country
@@ -33,7 +34,7 @@ INSERT INTO fact_financing
                          , 2 )
                       AS loan_charge
                  , TO_DATE ( TRUNC ( dbms_random.VALUE ( 2451050
-                                                       , 2452000 )
+                                                       , 2456000 )
                                     + 2000 )
                            , 'j' )
                       AS end_date
@@ -41,6 +42,6 @@ INSERT INTO fact_financing
         , hr.countries cntr
         , (    SELECT ROWNUM
                  FROM DUAL
-           CONNECT BY ROWNUM <= 2000);
+           CONNECT BY ROWNUM <= 3000);
 
 COMMIT;

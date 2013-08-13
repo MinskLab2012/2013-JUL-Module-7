@@ -1,0 +1,245 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="1C30BED2-5A18-DA2D-FFF7-458275389EE6" directorySegmentName="seg_0" name="DIM_GEN_PERIODS">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>DIM_GEN_PERIODS</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+<pkName>PK_DIM_GEN_PERIODS</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="PERIOD_SURR_ID" id="E5FDC487-C1BD-DA07-0B91-D736DB61154D">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>PERIOD_SURR_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="PERIOD_ID" id="0247BC6F-DC82-A8A1-7E7F-E4FE80B3F604">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>PERIOD_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="PERIOD_CODE" id="056D1862-52AA-263D-1675-020E212660D8">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>PERIOD_CODE</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="PERIOD_DESC" id="3BDE145E-6C80-C318-3054-95F0A10BA622">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>PERIOD_DESC</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_FROM_NUM" id="05230B8E-AF9C-7E27-3E9A-A1187D3FBC66">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_FROM_NUM</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_TO_NUM" id="0C84CDDA-4288-E6D2-0A14-106F2A817B6B">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_TO_NUM</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_FROM_DT" id="A56899F0-3218-F02A-2B1E-54ADAF3E8053">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_FROM_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_TO_DT" id="09253AE9-3522-20D7-E753-AF389CF9A11F">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_TO_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_FROM_CHAR" id="AB68B23E-EF1D-5F1A-9A1A-4F5A85FDBF3A">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_FROM_CHAR</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="VALUE_TO_CHAR" id="EE53DA32-AFC1-10A1-02D2-388393C818A1">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>VALUE_TO_CHAR</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="LEVEL_CODE" id="25D5DD8E-396F-4E40-9FA0-2CB45348E4D3">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>LEVEL_CODE</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="INSERT_DT" id="81FD7858-1052-6844-D592-8A7F9491A38F">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>INSERT_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="UPDATE_DT" id="43E13C51-B5D9-9A81-A2DA-63D19B4C56A2">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_GEN_PERIODS</sourceObjSchema>
+<sourceObjName>UPDATE_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="19476300-67D4-EFDB-4851-0434F9A2D8D9" name="PK_DIM_GEN_PERIODS">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>PK_DIM_GEN_PERIODS</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:14 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E5FDC487-C1BD-DA07-0B91-D736DB61154D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="7C036236-D39C-0E67-6601-E2477A365BBB" name="PK_DIM_GEN_PERIODS">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>PK_DIM_GEN_PERIODS</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:13 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+<indexState>Unique Plain Index</indexState>
+<indexColumnUsage>
+<colUsage columnID="E5FDC487-C1BD-DA07-0B91-D736DB61154D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

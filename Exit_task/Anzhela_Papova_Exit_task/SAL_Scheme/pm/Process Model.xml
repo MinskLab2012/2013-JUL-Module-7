@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="EF510931-5816-75B7-BBC8-ED9FD4C4AB8E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:02:44 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

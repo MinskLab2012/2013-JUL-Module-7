@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="SAL" id="12C232DB-A71C-2C1D-8BF2-FDFD94F7098D" directorySegmentName="seg_0">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</SchemaObject>

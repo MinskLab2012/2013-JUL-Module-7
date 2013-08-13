@@ -1,0 +1,317 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableProxyOraclev10g" name="FCT_WB_FIN_COUNTRIES_MM" id="DB5157F0-D5B9-DCAE-A8AC-DE56538A070C" directorySegmentName="seg_0">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<logging>YES</logging>
+<partitionList class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionListOraclev10g" name="PL1" id="90985DD5-3583-F31A-DF2B-A4BF74D2CA0B">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<columnIDs>B0871DDF-A237-AFED-21B3-CC9A6B0CFAD7</columnIDs>
+</partitionList>
+<partitioned>YES</partitioned>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="UPDATE_DT" id="010CC3EB-385F-24DF-436F-102671DF62DF">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="TA_DIM_PRG_PROGRAM_ID" id="30959B2F-ED22-FD64-8447-72EC81CE41DA">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="TA_DIM_PRD_PERIOD_ID_DL" id="4DA03741-FC0A-9F5B-88CD-F377FA47FE0E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GDP" id="72AD2EF3-619E-37AC-AC5E-5AC37A9E7C98">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="TA_DIM_CNTR_COUNTRY_GEO_ID" id="741D66E8-990C-731A-3F57-629C42545B38">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="DIM_GEN_PERIODS_SURR_ID" id="8CF338F5-AB5E-4AB6-BC97-7E20EDD9EE4A">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="DIM_COUNTRIES_SURR_ID" id="91F6D4B2-B55D-A618-2C0E-08BD465424A3">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="INSERT_DT" id="AA6E209A-1C2A-F40A-9571-F99A6A9A3305">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="EVENT_DT" id="B0871DDF-A237-AFED-21B3-CC9A6B0CFAD7">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="FIN_AMOUNT" id="BBF4B9B2-9CDA-2F61-D1C3-80738BFE8097">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="DIM_FIN_SOURCES_ID" id="EFCBA56A-BBDC-60EB-E733-D9D55135FBEA">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="BUD_DEFICIT" id="F18109EF-4091-C441-65EF-3245C425A7A4">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="DIM_PROGRAMS_SURR_ID" id="F866397E-43D7-0A7A-8364-C0CC4E19994F">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<partitions>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2000" id="960BEA47-A009-3D0C-4717-9C2E811B7141">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>1</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2001-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2001" id="65FE4974-E356-9466-3B94-7E23A5C6F959">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>2</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2002-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2002" id="07DC2DBD-A2BD-E7EE-4EA7-D536E7FA6800">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>3</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2003-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2003" id="CDEA167E-0DB8-35EE-2A9E-5938966DE4AC">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>4</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2004-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2004" id="6BD2E326-BAB5-6C30-3B0E-208788917FF8">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>5</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2005-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2005" id="AF2DFE29-AE09-DB0E-1D83-52B67D027CCD">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>6</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2006-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2006" id="F6CD2683-4306-8E32-23FD-E08080867BEC">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>7</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2007-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2007" id="479A6B21-E5F1-29F7-4BED-825AFAB5C0C5">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>8</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2008-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2008" id="D200A201-76C6-6A62-8CF6-2C8098AA7098">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>9</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2009-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2009" id="10FF1559-82B4-A40C-92EF-CB3C6FFBAD9E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>10</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2010-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2010" id="68CBF4FB-1ED4-6A97-7F7D-3BD1F36ABE9B">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>NO</logging>
+<position>11</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>139AC8D7-68D0-80C3-1700-024B82691E57</tableSpace>
+<valueList>TO_DATE(&apos; 2011-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2011" id="B76F20B0-95DD-FD08-B16D-81FA85528EDA">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>12</position>
+<segment>70F37EAE-9B54-DF02-903A-A04059EC7D1E</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2012-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2012" id="A13526C9-2B11-36B4-8ED0-343F50115257">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>13</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2013-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2013" id="4C460447-C79B-EC30-2579-86C118D29F58">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>14</position>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2014-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2014" id="F1ED6E63-9E36-8EBB-650E-7E116B60C937">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>15</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2015-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2015" id="DD6597C6-03F2-0107-617F-049D8FB11485">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>16</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2016-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2016" id="2A2A016E-E099-885E-F1E9-9A259DBF2D8E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>17</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2017-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2017" id="BF801DC5-B326-22F7-AAA7-8CC0E6FC6612">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>18</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2018-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2018" id="75B1060D-39C5-39B2-DE27-94B3123DCF72">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>19</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2019-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2019" id="8E9A8084-3C6E-2814-1C4B-C19E002C15F4">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>20</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2020-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+<Partition class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PartitionOraclev10g" name="Y2020" id="5253F977-E11C-2549-C30F-D25F390ADD40">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:15 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<dataSegmentCompression>NO</dataSegmentCompression>
+<logging>YES</logging>
+<position>21</position>
+<segment>F69E6B50-525F-DEEC-0EDA-0B3351EBEE45</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<valueList>TO_DATE(&apos; 2021-01-01 00:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;)</valueList>
+</Partition>
+</partitions>
+</TableProxyOraclev10g>

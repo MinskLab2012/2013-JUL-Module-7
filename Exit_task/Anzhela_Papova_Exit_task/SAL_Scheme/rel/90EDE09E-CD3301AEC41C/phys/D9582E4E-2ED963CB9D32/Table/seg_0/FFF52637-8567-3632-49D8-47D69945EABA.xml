@@ -1,0 +1,208 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableProxyOraclev10g" name="DIM_COUNTRIES_SCD" id="FFF52637-8567-3632-49D8-47D69945EABA" directorySegmentName="seg_0">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GROUP_ID" id="08053B0A-8332-87DA-1BFD-118A3AAF9BF6">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GROUP_GEO_ID" id="083E0109-91BA-4ABE-219A-0930FC543989">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="LEVEL_CODE" id="12DB8454-5098-2EC9-1838-E2B4A23C9744">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="SUB_GROUP_ID" id="1D5C18DC-5743-3445-33B5-353ADBF3A619">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GRP_SYSTEM_GEO_ID" id="3211F670-9DAE-07C1-A392-5849C0591D70">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GEO_SYSTEM_GEO_ID" id="439BEBF2-B253-882F-2398-C642252EF36D">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="PART_CODE" id="44410089-A32D-A32F-92CF-D3574791F29C">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="PART_DESC" id="47A60C01-C4F3-B6A4-55B6-D601EFC73475">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GROUP_DESC" id="48E00DE3-AE36-87AE-AA75-000A3CB40FCE">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="REGION_CODE" id="54E9AC5E-6BD4-40B2-F4CD-B9B5C3E3119C">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_CODE_A2" id="58FBAF4B-BCFA-0485-399A-C6CFE36A8229">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GEO_SYSTEM_ID" id="6117F451-8958-CCAF-EF64-2F995D78F6DB">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_CODE_A3" id="70576576-5039-F5F3-6F10-D1F22C08BFBF">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GRP_SYSTEM_CODE" id="73493B1B-97E4-D134-896A-585A85B04896">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="VALID_FROM" id="751862A4-ED6E-6CAD-3808-392D80B0D2C1">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GROUP_CODE" id="753A96C8-1478-3003-461D-65FDE5F53229">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="REGION_ID" id="764832FE-698C-B085-9171-C5F5A8EC09C3">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="SUB_GROUP_CODE" id="77CD3D01-2485-FF4B-397B-DBB6EFA4A95B">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="SUB_GROUP_DESC" id="83E4940E-DA65-0948-9CE4-09336D2286BC">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="PART_GEO_ID" id="862AE1E1-52F8-AF30-1C02-CC24246A96D7">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_DESC" id="8F1B495D-2D89-3DA2-F404-88253B3A7BC9">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_SURR_ID" id="AB914A3E-5C49-8353-11CA-60A52DD12970">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="SUB_GROUP_GEO_ID" id="B1541D9D-5476-1C0C-BF2D-2C7095B9FAD0">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GEO_SYSTEM_DESC" id="B7049D5F-1732-5EC7-38A0-BE1DFE89C883">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_ID" id="B72EC7BA-8CEE-CF08-3B43-1523DE57B52D">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="IS_ACTIVE" id="C40B5B9B-025E-9EA0-F9B8-2455AD9E520E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GRP_SYSTEM_ID" id="CF9F9598-D0FD-0262-F790-978CAC41BE66">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GRP_SYSTEM_DESC" id="D03092D6-4263-2416-E21D-376234C4A166">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="PART_ID" id="D42D8155-27D8-F8A2-5D8E-DFF30248EE32">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="REGION_DESC" id="D6709517-82B5-EF0D-EEE1-2C2745B13E11">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="VALID_TO" id="D7D5A7FA-951C-A331-74E3-071DD5C18C4D">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="REGION_GEO_ID" id="DEB1F87B-6C2C-F6C9-1AEE-19B9DEC3C2FA">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="COUNTRY_GEO_ID" id="E31DF35F-13C5-C010-3487-24F6711FAE0A">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="INSERT_DT" id="F5FE5CA2-2793-60BA-160C-1A880432481E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="GEO_SYSTEM_CODE" id="FA54FC50-BDEE-0EC4-3804-4237BAC575EE">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PK_DIM_COUNTRIES_SCD" id="AECF29F2-4E05-C398-1B33-5A2D9E8A55BB">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:13 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<segment>698C58BD-F309-8D3C-75BE-C3AAA98524E1</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_DIM_COUNTRIES_SCD" id="2DB45B7F-DA3F-D17A-C9B3-2F733C7AFD6E">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:14 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<existingIndex>AECF29F2-4E05-C398-1B33-5A2D9E8A55BB</existingIndex>
+<indexSegment>698C58BD-F309-8D3C-75BE-C3AAA98524E1</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev10g>

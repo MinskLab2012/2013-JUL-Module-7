@@ -1,4 +1,4 @@
-/* Formatted on 03.08.2013 23:17:18 (QP5 v5.139.911.3011) */
+/* Formatted on 10.08.2013 12:33:24 (QP5 v5.139.911.3011) */
 --ALTER TABLE t_program_manager
  --  DROP CONSTRAINT fk_t_pr1;
 
@@ -13,6 +13,7 @@ CREATE TABLE t_program_manager
  , manager_id     NUMBER NOT NULL
  , start_date     DATE NOT NULL
  , insert_dt      DATE
+ , update_dt      DATE
  , CONSTRAINT pk_t_pr PRIMARY KEY ( program_id, manager_id, start_date )
 );
 

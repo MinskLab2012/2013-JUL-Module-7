@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="5768CABB-7B02-2BE1-3B10-623E964F08F2" directorySegmentName="seg_0" name="DIM_FIN_SOURCES">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>DIM_FIN_SOURCES</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+<pkName>PK_DIM_FIN_SOURCES</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="FIN_SOURCE_ID" id="5596FD49-1983-AEFE-A2FF-880084452252">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_FIN_SOURCES</sourceObjSchema>
+<sourceObjName>FIN_SOURCE_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="FIN_SOURCE_CODE" id="1713393C-2F28-DDFB-5A4B-CA16AC862FC6">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_FIN_SOURCES</sourceObjSchema>
+<sourceObjName>FIN_SOURCE_CODE</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="FIN_SOURCE_DESC" id="3507DE9E-903E-F079-BA70-133B2FFB3B78">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_FIN_SOURCES</sourceObjSchema>
+<sourceObjName>FIN_SOURCE_DESC</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="INSERT_DT" id="19288731-2755-F78E-A675-8A2D4B6ACDEA">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_FIN_SOURCES</sourceObjSchema>
+<sourceObjName>INSERT_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="UPDATE_DT" id="A25DCE62-1165-1249-0F5F-5CC193950B28">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>DIM_FIN_SOURCES</sourceObjSchema>
+<sourceObjName>UPDATE_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="AEEC569F-98D3-BA1D-6624-58C3E137390C" name="PK_DIM_FIN_SOURCES">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>PK_DIM_FIN_SOURCES</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:14 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5596FD49-1983-AEFE-A2FF-880084452252"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="059B4E21-095B-D97E-4940-E8E5E875F11A" name="PK_DIM_FIN_SOURCES">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>PK_DIM_FIN_SOURCES</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:13 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+<indexState>Unique Plain Index</indexState>
+<indexColumnUsage>
+<colUsage columnID="5596FD49-1983-AEFE-A2FF-880084452252"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
