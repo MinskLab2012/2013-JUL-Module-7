@@ -1,6 +1,0 @@
-CREATE OR REPLACE PACKAGE pkg_etl_dim_customers_sal
---
-AS
-  PROCEDURE load_DIM_CUSTOMERS;
-
-END;
