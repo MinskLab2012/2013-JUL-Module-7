@@ -45,7 +45,7 @@ AS
          SELECT                        /*+USE_HASH(cls, st) parallel(cls, 4)*/
                DISTINCT st.payment_system_id AS p_id,
                         cls.payment_system_desc AS payment_system_code,
-                        'Code_' || cls.payment_system_desc AS cls_desc,
+                        'desc_' || cls.payment_system_desc AS cls_desc,
                         st.payment_system_desc,
                         stt.payment_system_type_id
            FROM tmp_orders cls
