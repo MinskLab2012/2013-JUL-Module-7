@@ -1,4 +1,4 @@
-/* Formatted on 13.08.2013 16:35:53 (QP5 v5.139.911.3011) */
+/* Formatted on 13.08.2013 17:55:39 (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_star_load
 AS
    PROCEDURE cls_dim_times_load_first
@@ -234,74 +234,88 @@ AS
                               CONNECT BY PRIOR parent_geo_id = child_geo_id) PIVOT (SUM ( geo_id )
                                                                              FOR link_type_id
                                                                              IN (2 AS l_2, 3 AS l_3)))
-         SELECT lcc.geo_id AS country_geo_id
-              , lcc.country_id
-              , lcc.country_code_a3
-              , lcc.country_desc AS country_desc
-              , NVL ( lcr.geo_id, -99 ) AS region_geo_id
-              , NVL ( lcr.region_id, -99 ) AS region_id
-              , NVL ( lcr.region_desc, 'n.d.' ) AS region_desc
-              , NVL ( lcp.geo_id, -99 ) AS part_geo_id
-              , NVL ( lcp.part_id, -99 ) AS part_id
-              , NVL ( lcp.part_desc, 'n.d.' ) AS part_desc
-              , TO_CHAR ( TRUNC ( ( SELECT MAX ( action_dt )
-                                      FROM u_stg.t_geo_object_actions tac
-                                     WHERE tac.geo_id = piv.roo ) )
-                        , 'DD-MON-YY' )
-                   AS valid_from
-              , TO_CHAR ( TRUNC ( SYSDATE )
-                        , 'DD-MON-YY' )
-                   AS valid_to
-              , 'Y' AS is_actual
-           FROM piv
-                LEFT JOIN u_stg.lc_countries lcc
-                   ON piv.roo = lcc.geo_id
-                  AND lcc.localization_id = 1
-                LEFT JOIN u_stg.lc_geo_regions lcr
-                   ON lcr.geo_id = piv.l_3
-                  AND lcr.localization_id = 1
-                LEFT JOIN u_stg.lc_geo_parts lcp
-                   ON lcp.geo_id = piv.l_2
-                  AND lcp.localization_id = 1
-                LEFT JOIN u_stg.t_geo_object_links gol
-                   ON gol.child_geo_id = lcc.geo_id
-                LEFT JOIN u_stg.t_geo_object_actions ta
-                   ON ta.geo_id = lcc.geo_id
-         UNION ALL
-         SELECT lcc.geo_id AS country_geo_id
-              , lcc.country_id
-              , lcc.country_code_a3
-              , lcc.country_desc AS country_desc
-              , NVL ( lcr.geo_id, -99 ) AS region_geo_id
-              , NVL ( lcr.region_id, -99 ) AS region_id
-              , NVL ( lcr.region_desc, 'n.d.' ) AS region_desc
-              , NVL ( lcp.geo_id, -99 ) AS part_geo_id
-              , NVL ( lcp.part_id, -99 ) AS part_id
-              , NVL ( lcp.part_desc, 'n.d.' ) AS part_desc
-              , TO_CHAR ( TRUNC ( action_dt )
-                        , 'DD-MON-YY' )
-                   AS valid_from
-              , TO_CHAR ( TRUNC ( action_dt )
-                        , 'DD-MON-YY' )
-                   AS valid_to
-              , 'N' AS is_actual
-           FROM piv
-                INNER JOIN u_stg.t_geo_object_actions ta
-                   ON ta.geo_id = piv.roo
-                LEFT JOIN u_stg.lc_countries lcc
-                   ON piv.roo = lcc.geo_id
-                  AND lcc.localization_id = 1
-                LEFT JOIN u_stg.t_geo_object_links gol
-                   ON gol.child_geo_id = lcc.geo_id
-                LEFT JOIN u_stg.lc_geo_regions lcr
-                   ON lcr.geo_id = ta.v_old_int
-                  AND lcr.localization_id = 1
-                LEFT JOIN u_stg.lc_geo_parts lcp
-                   ON lcp.geo_id = piv.l_2
-                  AND lcp.localization_id = 1
-          WHERE action_type != 'insert'
-         ORDER BY country_geo_id
-                , valid_from;
+         SELECT country_geo_id
+              , country_id
+              , country_code_a3
+              , country_desc
+              , region_geo_id
+              , region_id
+              , region_desc
+              , part_geo_id
+              , part_id
+              , part_desc
+              , valid_from
+              , valid_to
+              , is_actual
+              , ROWNUM AS rn
+           FROM (SELECT lcc.geo_id AS country_geo_id
+                      , lcc.country_id
+                      , lcc.country_code_a3
+                      , lcc.country_desc AS country_desc
+                      , NVL ( lcr.geo_id, -99 ) AS region_geo_id
+                      , NVL ( lcr.region_id, -99 ) AS region_id
+                      , NVL ( lcr.region_desc, 'n.d.' ) AS region_desc
+                      , NVL ( lcp.geo_id, -99 ) AS part_geo_id
+                      , NVL ( lcp.part_id, -99 ) AS part_id
+                      , NVL ( lcp.part_desc, 'n.d.' ) AS part_desc
+                      , TO_CHAR ( TRUNC ( ( SELECT MAX ( action_dt )
+                                              FROM u_stg.t_geo_object_actions tac
+                                             WHERE tac.geo_id = piv.roo ) )
+                                , 'DD-MON-YY' )
+                           AS valid_from
+                      , TO_CHAR ( TRUNC ( SYSDATE )
+                                , 'DD-MON-YY' )
+                           AS valid_to
+                      , 'Y' AS is_actual
+                   FROM piv
+                        LEFT JOIN u_stg.lc_countries lcc
+                           ON piv.roo = lcc.geo_id
+                          AND lcc.localization_id = 1
+                        LEFT JOIN u_stg.lc_geo_regions lcr
+                           ON lcr.geo_id = piv.l_3
+                          AND lcr.localization_id = 1
+                        LEFT JOIN u_stg.lc_geo_parts lcp
+                           ON lcp.geo_id = piv.l_2
+                          AND lcp.localization_id = 1
+                        LEFT JOIN u_stg.t_geo_object_links gol
+                           ON gol.child_geo_id = lcc.geo_id
+                        LEFT JOIN u_stg.t_geo_object_actions ta
+                           ON ta.geo_id = lcc.geo_id
+                 UNION ALL
+                 SELECT lcc.geo_id AS country_geo_id
+                      , lcc.country_id
+                      , lcc.country_code_a3
+                      , lcc.country_desc AS country_desc
+                      , NVL ( lcr.geo_id, -99 ) AS region_geo_id
+                      , NVL ( lcr.region_id, -99 ) AS region_id
+                      , NVL ( lcr.region_desc, 'n.d.' ) AS region_desc
+                      , NVL ( lcp.geo_id, -99 ) AS part_geo_id
+                      , NVL ( lcp.part_id, -99 ) AS part_id
+                      , NVL ( lcp.part_desc, 'n.d.' ) AS part_desc
+                      , TO_CHAR ( TRUNC ( action_dt )
+                                , 'DD-MON-YY' )
+                           AS valid_from
+                      , TO_CHAR ( TRUNC ( action_dt )
+                                , 'DD-MON-YY' )
+                           AS valid_to
+                      , 'N' AS is_actual
+                   FROM piv
+                        INNER JOIN u_stg.t_geo_object_actions ta
+                           ON ta.geo_id = piv.roo
+                        LEFT JOIN u_stg.lc_countries lcc
+                           ON piv.roo = lcc.geo_id
+                          AND lcc.localization_id = 1
+                        LEFT JOIN u_stg.t_geo_object_links gol
+                           ON gol.child_geo_id = lcc.geo_id
+                        LEFT JOIN u_stg.lc_geo_regions lcr
+                           ON lcr.geo_id = ta.v_old_int
+                          AND lcr.localization_id = 1
+                        LEFT JOIN u_stg.lc_geo_parts lcp
+                           ON lcp.geo_id = piv.l_2
+                          AND lcp.localization_id = 1
+                  WHERE action_type != 'insert'
+                 ORDER BY country_geo_id
+                        , valid_from);
 
       COMMIT;
    END cls_dim_geo_load;
@@ -325,16 +339,21 @@ AS
 
       INSERT INTO cls_fct_daily
            SELECT TRUNC ( tor.event_dt ) AS event_dt
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id
-                , SUM ( quantity ) AS quantity
+                , SUM ( toi.quantity ) AS quantity
+                , SUM ( toi.quantity * tpr.cost ) AS total_cost
                 , SUM ( total_price ) AS amount_sold
-             FROM u_stg.t_orders tor INNER JOIN u_stg.t_order_items toi ON tor.order_id = toi.order_id
+             FROM u_stg.t_orders tor
+                  INNER JOIN u_stg.t_order_items toi
+                     ON tor.order_id = toi.order_id
+                  INNER JOIN u_stg.t_products tpr
+                     ON tpr.product_id = toi.product_id
             WHERE TRUNC ( tor.event_dt ) < TO_DATE ( '01/01/2013'
                                                    , 'dd/mm/yyyy' )
          GROUP BY TRUNC ( tor.event_dt )
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id;
 
@@ -354,18 +373,25 @@ AS
 
       INSERT INTO cls_fct_daily
            SELECT TRUNC ( tor.event_dt ) AS event_dt
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id
-                , SUM ( quantity ) AS quantity
+                , SUM ( toi.quantity ) AS quantity
+                , SUM ( toi.quantity * tpr.cost ) AS total_cost
                 , SUM ( total_price ) AS amount_sold
-             FROM u_stg.t_orders tor INNER JOIN u_stg.t_order_items toi ON tor.order_id = toi.order_id
+             FROM u_stg.t_orders tor
+                  INNER JOIN u_stg.t_order_items toi
+                     ON tor.order_id = toi.order_id
+                  INNER JOIN u_stg.t_products tpr
+                     ON tpr.product_id = toi.product_id
             WHERE TRUNC ( tor.event_dt ) > TO_DATE ( '01/01/2013'
                                                    , 'dd/mm/yyyy' )
          GROUP BY TRUNC ( tor.event_dt )
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id;
+
+
 
       COMMIT;
 
@@ -384,18 +410,23 @@ AS
            SELECT TRUNC ( tor.event_dt
                         , 'MONTH' )
                      AS event_dt
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id
-                , SUM ( quantity ) AS quantity
+                , SUM ( toi.quantity ) AS quantity
+                , SUM ( toi.quantity * tpr.cost ) AS total_cost
                 , SUM ( total_price ) AS amount_sold
-             FROM u_stg.t_orders tor INNER JOIN u_stg.t_order_items toi ON tor.order_id = toi.order_id
+             FROM u_stg.t_orders tor
+                  INNER JOIN u_stg.t_order_items toi
+                     ON tor.order_id = toi.order_id
+                  INNER JOIN u_stg.t_products tpr
+                     ON tpr.product_id = toi.product_id
             WHERE TRUNC ( tor.event_dt
                         , 'MONTH' ) < TO_DATE ( '01/01/2013'
                                               , 'dd/mm/yyyy' )
          GROUP BY TRUNC ( tor.event_dt
                         , 'MONTH' )
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id;
 
@@ -416,18 +447,23 @@ AS
            SELECT TRUNC ( tor.event_dt
                         , 'MONTH' )
                      AS event_dt
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id
-                , SUM ( quantity ) AS quantity
+                , SUM ( toi.quantity ) AS quantity
+                , SUM ( toi.quantity * tpr.cost ) AS total_cost
                 , SUM ( total_price ) AS amount_sold
-             FROM u_stg.t_orders tor INNER JOIN u_stg.t_order_items toi ON tor.order_id = toi.order_id
+             FROM u_stg.t_orders tor
+                  INNER JOIN u_stg.t_order_items toi
+                     ON tor.order_id = toi.order_id
+                  INNER JOIN u_stg.t_products tpr
+                     ON tpr.product_id = toi.product_id
             WHERE TRUNC ( tor.event_dt
                         , 'MONTH' ) > TO_DATE ( '01/01/2013'
                                               , 'dd/mm/yyyy' )
          GROUP BY TRUNC ( tor.event_dt
                         , 'MONTH' )
-                , product_id
+                , toi.product_id
                 , ord_geo_id
                 , customer_id;
 
@@ -439,3 +475,4 @@ AS
        WITH TABLE cls_fct_monthly';
    END cls_fct_monthly_load;
 END pkg_star_load;
+

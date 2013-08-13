@@ -8,8 +8,8 @@ BEGIN
    pkg_star_load.dim_products_load;
    pkg_star_load.cls_dim_geo_load;
    pkg_star_load.dim_geo_load;
-   --pkg_star_load.cls_fct_daily_load_first; -- needed only for archive load into fct
+--  pkg_star_load.cls_fct_daily_load_first; -- needed only for archive load into fct
    pkg_star_load.cls_fct_daily_load;
-   --pkg_star_load.cls_fct_monthly_load_first; -- needed only for archive load into fct
+--  pkg_star_load.cls_fct_monthly_load_first; -- needed only for archive load into fct
    pkg_star_load.cls_fct_monthly_load;
 END;
