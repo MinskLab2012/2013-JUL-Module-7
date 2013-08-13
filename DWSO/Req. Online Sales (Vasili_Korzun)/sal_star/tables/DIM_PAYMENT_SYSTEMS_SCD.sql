@@ -19,7 +19,6 @@ create table DIM_PAYMENT_SYSTEMS_SCD
    payment_system_type_desc VARCHAR(100),
    valid_from DATE,
    valid_to DATE,
-   is_actual          VARCHAR(1),
    insert_dt          DATE,
    update_dt          DATE,
    constraint PK_DIM_PAYMENT_SYSTEMS_SCD primary key (payment_system_surr_id)

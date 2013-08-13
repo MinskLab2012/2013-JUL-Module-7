@@ -11,7 +11,7 @@ drop table DIM_PRODUCTS cascade constraints purge;
 create table DIM_PRODUCTS 
 (
    prod_id            NUMBER(7,0)          not null,
-   prod_code          VARCHAR(36),
+   prod_code          VARCHAR(100),
    prod_desc          VARCHAR(100),
    prod_subcategory_id NUMBER(5,0),
    prod_subcategory_code VARCHAR(36),
@@ -24,4 +24,5 @@ create table DIM_PRODUCTS
    constraint PK_DIM_PRODUCTS primary key (prod_id)
 );
  grant insert on DIM_PRODUCTS to st_data;
+  grant update on DIM_PRODUCTS to st_data;
   grant select on DIM_PRODUCTS to st_data;

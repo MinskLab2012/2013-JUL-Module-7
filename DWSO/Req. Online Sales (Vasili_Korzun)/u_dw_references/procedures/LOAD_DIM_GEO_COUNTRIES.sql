@@ -92,7 +92,9 @@ BEGIN
    COMMIT;
 END load_dim_geo_countries;
 
+grant execute on load_dim_geo_countries to st_data;
+/*
 BEGIN
    load_dim_geo_countries;
 END;
-
+*/

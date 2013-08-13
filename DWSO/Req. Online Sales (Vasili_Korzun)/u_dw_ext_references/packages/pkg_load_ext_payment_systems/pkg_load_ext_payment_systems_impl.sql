@@ -93,8 +93,22 @@ AS
                          pc.cls_desc,
                          pc.payment_system_type_id,
                          SYSDATE);
+                                        INSERT INTO st_data.payment_systems_actions (
+                                                            action_id,
+                                                            action_date,
+                                                            payment_system_id,
+                                                            action_type_id,
+                                                            value_old,
+                                                            value_new)
+                    VALUES (st_data.payment_systems_actions_seq.NEXTVAL,
+                            SYSDATE,
+                            st_data.payment_systems_seq.currval,
+                            (SELECT action_type_id
+                               FROM st_data.payment_systems_action_types
+                              WHERE action_type_desc = 'PSDESC'),
+                            pc.payment_system_desc,
+                            pc.cls_desc);
 
-            NULL;
          ELSE
             raise_application_error(-20222, 'Something bad is happening with main routine');
          END IF;
