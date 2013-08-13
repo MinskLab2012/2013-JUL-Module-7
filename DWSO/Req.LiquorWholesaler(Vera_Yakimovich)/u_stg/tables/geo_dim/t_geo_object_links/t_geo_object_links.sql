@@ -1,72 +1,58 @@
-alter table u_stg.t_geo_object_links
-  drop constraint FK_T_GEO_OBJECTS2GEO_LINK_C;
---
---alter table u_stg.t_geo_object_links
---   drop constraint FK_T_GEO_OBJECTS2GEO_LINK_P;
---
-drop table u_stg.t_geo_object_links cascade constraints;
+DROP TABLE U_STG.T_GEO_OBJECT_LINKS CASCADE CONSTRAINTS;
 
---==============================================================
--- Table: t_geo_object_links                                    
---==============================================================
-create table u_stg.t_geo_object_links 
+CREATE TABLE U_STG.T_GEO_OBJECT_LINKS
 (
-   parent_geo_id        NUMBER(22,0)         not null,
-   child_geo_id         NUMBER(22,0)         not null,
-   link_type_id         NUMBER(22,0)         not null,
-   constraint PK_T_GEO_OBJECT_LINKS primary key (parent_geo_id, child_geo_id, link_type_id)
-         using index
-       local
-       tablespace ts_stg_data_01
+  PARENT_GEO_ID  NUMBER(22)                     NOT NULL,
+  CHILD_GEO_ID   NUMBER(22)                     NOT NULL,
+  LINK_TYPE_ID   NUMBER(22)                     NOT NULL
 )
-tablespace ts_stg_data_01
- partition by list
- (link_type_id)
-    (
-        partition
-             p_geo_sys2continents
-            values (1)
-             nocompress,
-        partition
-             p_continent2regions
-            values (2)
-             nocompress,
-        partition
-             p_region2countries
-            values (3)
-             nocompress,
-        partition
-             p_grp_sys2groups
-            values (4)
-             nocompress,
-        partition
-             p_group2sub_groups
-            values (5)
-             nocompress,
-        partition
-             p_sub_groups2countries
-            values (6)
-             nocompress
-    );
+TABLESPACE TS_STG_DATA_01
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+PARTITION BY LIST (LINK_TYPE_ID)
+(  
+  PARTITION P_GEO_SYS2CONTINENTS VALUES (1)
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_STG_DATA_01
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION P_CONTINENT2REGIONS VALUES (2)
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_STG_DATA_01
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                BUFFER_POOL      DEFAULT
+               ),  
+  PARTITION P_REGION2COUNTRIES VALUES (3)
+    LOGGING
+    NOCOMPRESS 
+    TABLESPACE TS_STG_DATA_01
+    PCTFREE    10
+    INITRANS   1
+    MAXTRANS   255
+    STORAGE    (
+                BUFFER_POOL      DEFAULT
+               )
+)
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
 
-comment on table u_stg.t_geo_object_links is
-'Reference store: All links between Geo Objects';
+COMMENT ON TABLE U_STG.T_GEO_OBJECT_LINKS IS 'Reference store: All links between Geo Objects';
 
-comment on column u_stg.t_geo_object_links.parent_geo_id is
-'Parent objects of Geo_IDs';
+COMMENT ON COLUMN U_STG.T_GEO_OBJECT_LINKS.PARENT_GEO_ID IS 'Parent objects of Geo_IDs';
 
-comment on column u_stg.t_geo_object_links.child_geo_id is
-'Child objects of Geo_IDs';
+COMMENT ON COLUMN U_STG.T_GEO_OBJECT_LINKS.CHILD_GEO_ID IS 'Child objects of Geo_IDs';
 
-comment on column u_stg.t_geo_object_links.link_type_id is
-'Type of Links, between Geo_IDs';
-
-alter table u_stg.t_geo_object_links
-   add constraint FK_T_GEO_OBJECTS2GEO_LINK_C foreign key (child_geo_id)
-      references u_stg.t_geo_objects (geo_id)
-      on delete cascade;
-
-alter table u_stg.t_geo_object_links
-   add constraint FK_T_GEO_OBJECTS2GEO_LINK_P foreign key (parent_geo_id)
-      references u_stg.t_geo_objects (geo_id)
-      on delete cascade;
+COMMENT ON COLUMN U_STG.T_GEO_OBJECT_LINKS.LINK_TYPE_ID IS 'Type of Links, between Geo_IDs';

@@ -1,3 +1,4 @@
+/* Formatted on 13.08.2013 8:10:02 (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_load_ext_ref_geography
 AS
    -- Extract Data from external source = External Table
@@ -61,14 +62,15 @@ AS
       --Commit Data
       COMMIT;
    END load_cls_geo_structure2cntr;
-  
 
- PROCEDURE load_ref_geo_countries
+
+   PROCEDURE load_ref_geo_countries
    AS
    BEGIN
       --Delete old values
       DELETE FROM u_stg.w_countries trg
-            WHERE trg.country_id NOT IN (     SELECT DISTINCT country_id FROM cls_geo_countries_iso3166);
+            WHERE trg.country_id NOT IN (SELECT DISTINCT country_id
+                                           FROM cls_geo_countries_iso3166);
 
       --Merge Source data
       MERGE INTO u_stg.w_countries trg
@@ -173,8 +175,8 @@ AS
 
    -- Extract Data from external source = External Table
    -- Load All Geography objects - Structures from ISO 3166
-  
- PROCEDURE load_cls_geo_structure
+
+   PROCEDURE load_cls_geo_structure
    AS
    BEGIN
       --truncate cleansing tables
@@ -298,34 +300,33 @@ AS
       COMMIT;
    END load_ref_geo_regions;
 
-   
- PROCEDURE load_lnk_geo_structure
+
+   PROCEDURE load_lnk_geo_structure
    AS
-      TYPE re IS REF CURSOR;
-
-   ref_upd        re;
-
-   TYPE rec IS RECORD
-   (
-      parent_id      NUMBER ( 22 )
-    , child_id       NUMBER ( 22 )
-    , type_id        NUMBER ( 5 )
-    , parent_s       NUMBER ( 22 )
-    , child_s        NUMBER ( 22 )
-   );
-
-   TYPE rec_t IS TABLE OF rec;
-
-   rec_str        rec_t;
+            TYPE re IS REF CURSOR;
+   
+         ref_upd        re;
+    
+   
+         TYPE rec IS RECORD
+      (
+         parent_id      NUMBER ( 22 )
+       , child_id       NUMBER ( 22 )
+       , type_id        NUMBER ( 5 )
+       , parent_s       NUMBER ( 22 )
+       , child_s        NUMBER ( 22 )
+      );
+   
+         TYPE rec_t IS TABLE OF rec;
+   
+         rec_str        rec_t;
+ 
    BEGIN
       --Merge Source data
-      MERGE INTO u_dw_references.w_geo_object_links trg
+    MERGE INTO u_stg.t_geo_object_actions trg
            USING (SELECT p_obj.geo_id parent_geo_id
                        , c_obj.geo_id child_geo_id
                        , CASE
-                            WHEN p_obj.geo_type_id = 2
-                             AND c_obj.geo_type_id = 10 THEN
-                               1
                             WHEN p_obj.geo_type_id = 10
                              AND c_obj.geo_type_id = 11 THEN
                                2
@@ -337,15 +338,58 @@ AS
                                , parent_code
                                , structure_desc
                                , CASE
-                                    WHEN UPPER ( structure_level ) = 'WORLD' THEN 2
                                     WHEN UPPER ( structure_level ) = 'CONTINENTS' THEN 10
                                     WHEN UPPER ( structure_level ) = 'REGIONS' THEN 11
                                     ELSE NULL
                                  END
                                     AS type_id
                             FROM cls_geo_structure_iso3166) cls
-                       , u_dw_references.w_geo_objects p_obj
-                       , u_dw_references.w_geo_objects c_obj
+                       , u_stg.w_geo_objects p_obj
+                       , u_stg.w_geo_objects c_obj
+                   WHERE cls.parent_code IS NOT NULL
+                     AND p_obj.geo_code_id = cls.parent_code
+                     AND p_obj.geo_type_id < cls.type_id
+                     AND c_obj.geo_code_id = cls.child_code
+                     AND c_obj.geo_type_id = cls.type_id) cls
+              ON ( trg.geo_id = cls.child_geo_id
+              AND 2 = cls.link_type_id )
+      WHEN NOT MATCHED THEN
+         INSERT            ( act_id
+                           , action_type
+                           , geo_id
+                           , v_old_int
+                           , v_new_int
+                           , action_dt )
+             VALUES ( u_stg.sq_act_id.NEXTVAL
+                    , 'insert'
+                    , child_geo_id
+                    , ''
+                    , parent_geo_id
+                    , SYSDATE );  
+   
+    MERGE INTO u_stg.w_geo_object_links trg
+           USING (SELECT p_obj.geo_id parent_geo_id
+                       , c_obj.geo_id child_geo_id
+                       , CASE
+                            WHEN p_obj.geo_type_id = 10
+                             AND c_obj.geo_type_id = 11 THEN
+                               2
+                            ELSE
+                               NULL
+                         END
+                            AS link_type_id
+                    FROM (SELECT child_code
+                               , parent_code
+                               , structure_desc
+                               , CASE
+                                    WHEN UPPER ( structure_level ) = 'CONTINENTS' THEN 10
+                                    WHEN UPPER ( structure_level ) = 'REGIONS' THEN 11
+                                    ELSE NULL
+                                 END
+                                    AS type_id
+                            FROM cls_geo_structure_iso3166) cls
+                       , u_stg.w_geo_objects p_obj
+                       , u_stg.w_geo_objects c_obj
                    WHERE cls.parent_code IS NOT NULL
                      AND p_obj.geo_code_id = cls.parent_code
                      AND p_obj.geo_type_id < cls.type_id
@@ -356,125 +400,100 @@ AS
       WHEN NOT MATCHED THEN
          INSERT            ( parent_geo_id
                            , child_geo_id
-                           , link_type_id
-                           , insert_dt )
+                           , link_type_id )
              VALUES ( cls.parent_geo_id
                     , cls.child_geo_id
-                    , cls.link_type_id, sysdate );
-                    
- OPEN ref_upd FOR
-      SELECT parent_geo_id, child_geo_id, sour.link_type_id, parent_s, child_s
-        FROM    (SELECT p_obj.geo_id parent_geo_id
-                       , c_obj.geo_id child_geo_id
-                       , CASE
-                            WHEN p_obj.geo_type_id = 2
-                             AND c_obj.geo_type_id = 10 THEN
-                               1
-                            WHEN p_obj.geo_type_id = 10
-                             AND c_obj.geo_type_id = 11 THEN
-                               2
-                            ELSE
-                               NULL
-                         END
-                            AS link_type_id
-                    FROM (SELECT child_code
-                               , parent_code
-                               , structure_desc
-                               , CASE
-                                    WHEN UPPER ( structure_level ) = 'WORLD' THEN 2
-                                    WHEN UPPER ( structure_level ) = 'CONTINENTS' THEN 10
-                                    WHEN UPPER ( structure_level ) = 'REGIONS' THEN 11
-                                    ELSE NULL
-                                 END
-                                    AS type_id
-                            FROM cls_geo_structure_iso3166) cls
-                       , u_dw_references.w_geo_objects p_obj
-                       , u_dw_references.w_geo_objects c_obj
-                   WHERE cls.parent_code IS NOT NULL
-                     AND p_obj.geo_code_id = cls.parent_code
-                     AND p_obj.geo_type_id < cls.type_id
-                     AND c_obj.geo_code_id = cls.child_code
-                     AND c_obj.geo_type_id = cls.type_id
-                 MINUS
-                 ( SELECT p_obj.geo_id parent_geo_id
-                       , c_obj.geo_id child_geo_id
-                       , CASE
-                            WHEN p_obj.geo_type_id = 2
-                             AND c_obj.geo_type_id = 10 THEN
-                               1
-                            WHEN p_obj.geo_type_id = 10
-                             AND c_obj.geo_type_id = 11 THEN
-                               2
-                            ELSE
-                               NULL
-                         END
-                            AS link_type_id
-                    FROM (SELECT child_code
-                               , parent_code
-                               , structure_desc
-                               , CASE
-                                    WHEN UPPER ( structure_level ) = 'WORLD' THEN 2
-                                    WHEN UPPER ( structure_level ) = 'CONTINENTS' THEN 10
-                                    WHEN UPPER ( structure_level ) = 'REGIONS' THEN 11
-                                    ELSE NULL
-                                 END
-                                    AS type_id
-                            FROM cls_geo_structure_iso3166) cls
-                       , u_dw_references.w_geo_objects p_obj
-                       , u_dw_references.w_geo_objects c_obj
-                   WHERE cls.parent_code IS NOT NULL
-                     AND p_obj.geo_code_id = cls.parent_code
-                     AND p_obj.geo_type_id < cls.type_id
-                     AND c_obj.geo_code_id = cls.child_code
-                     AND c_obj.geo_type_id = cls.type_id
-                  INTERSECT
-                  SELECT parent_geo_id, child_geo_id, link_type_id
-                    FROM u_dw_references.w_geo_object_links trg )               
-               ) sour
-             INNER JOIN
-                (SELECT parent_geo_id AS parent_s
-                      , child_geo_id AS child_s
-                      , LINK_TYPE_ID    
-                   FROM u_dw_references.w_geo_object_links) trg
-             ON trg.child_s = sour.child_geo_id and TRG.LINK_TYPE_ID = SOUR.LINK_TYPE_ID;
+                    , cls.link_type_id );
 
-   LOOP
-      FETCH ref_upd
-      BULK COLLECT INTO rec_str
-      LIMIT 1000;
-
-      FORALL i IN 1 .. rec_str.COUNT
-         INSERT INTO u_dw_references.t_actions
-            SELECT u_dw_references.sq_act_id.NEXTVAL
-                 , CASE WHEN rec_str(i).type_id = 2 THEN  'update_region_parent'
-                 WHEN rec_str(i).type_id = 3 THEN  'update_part_parent'
-                 END
-                 , rec_str ( i ).child_s
-                 , rec_str ( i ).parent_s
-                 , rec_str ( i ).parent_id
-                 , SYSDATE
-              FROM DUAL;
-
-      FORALL i IN 1 .. rec_str.COUNT
-         UPDATE u_dw_references.w_geo_object_links trg
-            SET trg.parent_geo_id = rec_str ( i ).parent_id
-          WHERE trg.child_geo_id = rec_str ( i ).child_id;
-
-      EXIT WHEN ref_upd%NOTFOUND;
-   END LOOP;
-
+     
+ 
       --Commit Resulst
       COMMIT;
+      
+       OPEN ref_upd FOR
+            SELECT parent_geo_id
+                 , child_geo_id
+                 , sour.link_type_id
+                 , parent_s
+                 , child_s
+              FROM    (SELECT p_obj.geo_id parent_geo_id
+                            , c_obj.geo_id child_geo_id
+                            , CASE
+                                 WHEN p_obj.geo_type_id = 10
+                                  AND c_obj.geo_type_id = 11 THEN
+                                    2
+                                 ELSE
+                                    NULL
+                              END
+                                 AS link_type_id
+                         FROM (SELECT child_code
+                                    , parent_code
+                                    , structure_desc
+                                    , CASE
+                                         WHEN UPPER ( structure_level ) = 'CONTINENTS' THEN 10
+                                         WHEN UPPER ( structure_level ) = 'REGIONS' THEN 11
+                                         ELSE NULL
+                                      END
+                                         AS type_id
+                                 FROM cls_geo_structure_iso3166) cls
+                            , u_stg.w_geo_objects p_obj
+                            , u_stg.w_geo_objects c_obj
+                        WHERE cls.parent_code IS NOT NULL
+                          AND p_obj.geo_code_id = cls.parent_code
+                          AND p_obj.geo_type_id < cls.type_id
+                          AND c_obj.geo_code_id = cls.child_code
+                          AND c_obj.geo_type_id = cls.type_id
+                       MINUS
+                       SELECT parent_geo_id AS parent_s
+                            , child_geo_id AS child_s
+                            , link_type_id
+                         FROM u_stg.w_geo_object_links) sour
+                   INNER JOIN
+                      (SELECT parent_geo_id AS parent_s
+                            , child_geo_id AS child_s
+                            , link_type_id
+                         FROM u_stg.w_geo_object_links) trg
+                   ON trg.child_s = sour.child_geo_id
+                  AND trg.link_type_id = sour.link_type_id;
+   
+         LOOP
+            FETCH ref_upd
+            BULK COLLECT INTO rec_str
+            LIMIT 1000;
+   
+            FORALL i IN 1 .. rec_str.COUNT
+               INSERT INTO u_stg.t_geo_object_actions
+                  SELECT u_stg.sq_act_id.NEXTVAL
+                       , CASE
+                            WHEN rec_str ( i ).type_id = 2 THEN 'update_region_parent'
+                            WHEN rec_str ( i ).type_id = 3 THEN 'update_part_parent'
+                         END
+                       , rec_str ( i ).child_s
+                       , rec_str ( i ).parent_s
+                       , rec_str ( i ).parent_id
+                       , SYSDATE
+                    FROM DUAL;
+   
+            FORALL i IN 1 .. rec_str.COUNT
+               UPDATE u_stg.w_geo_object_links trg
+                  SET trg.parent_geo_id = rec_str ( i ).parent_id
+                WHERE trg.child_geo_id = rec_str ( i ).child_id;
+   
+            EXIT WHEN ref_upd%NOTFOUND;
+         END LOOP;
+   
+         --Commit Resulst
+         COMMIT;
    END load_lnk_geo_structure;
 
    -- Load Countries links to Geography Regions from ISO 3166 to References
-  PROCEDURE load_lnk_geo_countries
-AS
-   TYPE re IS REF CURSOR;
+   PROCEDURE load_lnk_geo_countries
+   AS
+      TYPE re IS REF CURSOR;
 
-   ref_upd        re;
+      ref_upd        re;
 
-   TYPE rec IS RECORD
+      TYPE rec IS RECORD
    (
       parent_id      NUMBER ( 22 )
     , child_id       NUMBER ( 22 )
@@ -483,20 +502,47 @@ AS
     , child_s        NUMBER ( 22 )
    );
 
-   TYPE rec_t IS TABLE OF rec;
+      TYPE rec_t IS TABLE OF rec;
 
-   rec_str        rec_t;
-BEGIN
-   --Merge Source data
-  MERGE INTO u_dw_references.w_geo_object_links trg
+      rec_str        rec_t;
+   BEGIN
+      --Merge Source data
+    MERGE INTO u_stg.t_geo_object_actions trg
            USING (SELECT reg.geo_id AS parent_geo_id
                        , cntr.geo_id AS child_geo_id
                        , cls.county_desc
                        , cls.structure_desc
                        , 3 AS link_type_id
                     FROM cls_cntr2structure_iso3166 cls
-                       , u_dw_references.w_countries cntr
-                       , u_dw_references.w_geo_regions reg
+                       , u_stg.w_countries cntr
+                       , u_stg.w_geo_regions reg
+                   WHERE cls.country_id = cntr.country_id
+                     AND cls.structure_code = reg.region_id) cls
+              ON ( trg.geo_id = cls.child_geo_id
+              AND 3 = cls.link_type_id )
+      WHEN NOT MATCHED THEN
+         INSERT            ( act_id
+                           , action_type
+                           , geo_id
+                           , v_old_int
+                           , v_new_int
+                           , action_dt )
+             VALUES ( u_stg.sq_act_id.NEXTVAL
+                    , 'insert'
+                    , cls.child_geo_id
+                    , NULL
+                    , cls.parent_geo_id
+                    , SYSDATE );
+     
+    MERGE INTO u_stg.w_geo_object_links trg
+           USING (SELECT reg.geo_id AS parent_geo_id
+                       , cntr.geo_id AS child_geo_id
+                       , cls.county_desc
+                       , cls.structure_desc
+                       , 3 AS link_type_id
+                    FROM cls_cntr2structure_iso3166 cls
+                       , u_stg.w_countries cntr
+                       , u_stg.w_geo_regions reg
                    WHERE cls.country_id = cntr.country_id
                      AND cls.structure_code = reg.region_id) cls
               ON ( trg.child_geo_id = cls.child_geo_id
@@ -504,70 +550,71 @@ BEGIN
       WHEN NOT MATCHED THEN
          INSERT            ( parent_geo_id
                            , child_geo_id
-                           , link_type_id 
-                           , insert_dt)
+                           , link_type_id )
              VALUES ( cls.parent_geo_id
                     , cls.child_geo_id
-                    , cls.link_type_id 
-                    ,sysdate);
+                    , cls.link_type_id );
+
+     
+
+      OPEN ref_upd FOR
+         SELECT *
+           FROM    (SELECT reg.geo_id AS parent_geo_id
+                         , cntr.geo_id AS child_geo_id
+                         , 3 AS link_type_id
+                      FROM cls_cntr2structure_iso3166 cls
+                         , u_stg.w_countries cntr
+                         , u_stg.w_geo_regions reg
+                     WHERE cls.country_id = cntr.country_id
+                       AND cls.structure_code = reg.region_id
+                    MINUS
+                    ( SELECT reg.geo_id AS parent_geo_id
+                           , cntr.geo_id AS child_geo_id
+                           , 3 AS link_type_id
+                        FROM cls_cntr2structure_iso3166 cls
+                           , u_stg.w_countries cntr
+                           , u_stg.w_geo_regions reg
+                       WHERE cls.country_id = cntr.country_id
+                         AND cls.structure_code = reg.region_id
+                     INTERSECT
+                     SELECT parent_geo_id
+                          , child_geo_id
+                          , link_type_id
+                       FROM u_stg.w_geo_object_links trg
+                      WHERE trg.link_type_id = 3 )) sour
+                INNER JOIN
+                   (SELECT parent_geo_id AS parent_s
+                         , child_geo_id AS child_s
+                      FROM u_stg.w_geo_object_links
+                     WHERE u_stg.w_geo_object_links.link_type_id = 3) trg
+                ON trg.child_s = sour.child_geo_id;
+
+      LOOP
+         FETCH ref_upd
+         BULK COLLECT INTO rec_str
+         LIMIT 1000;
+
+         FORALL i IN 1 .. rec_str.COUNT
+            INSERT INTO u_stg.t_geo_object_actions
+               SELECT u_stg.sq_act_id.NEXTVAL
+                    , 'update_country_parent'
+                    , rec_str ( i ).child_s
+                    , rec_str ( i ).parent_s
+                    , rec_str ( i ).parent_id
+                    , SYSDATE
+                 FROM DUAL;
+
+         FORALL i IN 1 .. rec_str.COUNT
+            UPDATE u_stg.w_geo_object_links trg
+               SET trg.parent_geo_id = rec_str ( i ).parent_id
+             WHERE trg.child_geo_id = rec_str ( i ).child_id;
+
+         EXIT WHEN ref_upd%NOTFOUND;
+      END LOOP;
 
 
-   OPEN ref_upd FOR
-      SELECT *
-        FROM    (SELECT reg.geo_id AS parent_geo_id
-                      , cntr.geo_id AS child_geo_id
-                      , 3 AS link_type_id
-                   FROM cls_cntr2structure_iso3166 cls
-                      , u_dw_references.w_countries cntr
-                      , u_dw_references.w_geo_regions reg
-                  WHERE cls.country_id = cntr.country_id
-                    AND cls.structure_code = reg.region_id
-                 MINUS
-                 ( SELECT reg.geo_id AS parent_geo_id
-                        , cntr.geo_id AS child_geo_id
-                        , 3 AS link_type_id
-                     FROM cls_cntr2structure_iso3166 cls
-                        , u_dw_references.w_countries cntr
-                        , u_dw_references.w_geo_regions reg
-                    WHERE cls.country_id = cntr.country_id
-                      AND cls.structure_code = reg.region_id
-                  INTERSECT
-                  SELECT parent_geo_id, child_geo_id, link_type_id
-                    FROM u_dw_references.w_geo_object_links trg
-                   WHERE trg.link_type_id = 3 )               
-               ) sour
-             INNER JOIN
-                (SELECT parent_geo_id AS parent_s
-                      , child_geo_id AS child_s
-                   FROM u_dw_references.w_geo_object_links
-                  WHERE u_dw_references.w_geo_object_links.link_type_id = 3) trg
-             ON trg.child_s = sour.child_geo_id;
-
-   LOOP
-      FETCH ref_upd
-      BULK COLLECT INTO rec_str
-      LIMIT 1000;
-
-      FORALL i IN 1 .. rec_str.COUNT
-         INSERT INTO u_dw_references.t_actions
-            SELECT u_dw_references.sq_act_id.NEXTVAL
-                 , 'update_country_parent'
-                 , rec_str ( i ).child_s
-                 , rec_str ( i ).parent_s
-                 , rec_str ( i ).parent_id
-                 , SYSDATE
-              FROM DUAL;
-
-      FORALL i IN 1 .. rec_str.COUNT
-         UPDATE u_dw_references.w_geo_object_links trg
-            SET trg.parent_geo_id = rec_str ( i ).parent_id
-          WHERE trg.child_geo_id = rec_str ( i ).child_id;
-
-      EXIT WHEN ref_upd%NOTFOUND;
-   END LOOP;
-
-
-   --Commit Resulst
-   COMMIT;
-END load_lnk_geo_countries;
-  END pkg_load_ext_ref_geography;/
+      --Commit Resulst
+      COMMIT;
+   END load_lnk_geo_countries;
+END pkg_load_ext_ref_geography;
+/

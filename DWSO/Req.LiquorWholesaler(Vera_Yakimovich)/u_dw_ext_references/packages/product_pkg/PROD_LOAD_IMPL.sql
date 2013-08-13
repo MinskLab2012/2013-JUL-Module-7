@@ -163,9 +163,7 @@ AS
 
       LOOP
          FETCH prod_ins
-         BULK COLLECT INTO bulk_code, bulk_desc;
-
-         EXIT WHEN prod_ins%NOTFOUND;
+         BULK COLLECT INTO bulk_code, bulk_desc;         
 
          FOR i IN bulk_code.FIRST .. bulk_code.LAST LOOP
             INSERT INTO u_stg.t_prod_category
@@ -184,6 +182,7 @@ AS
                     , ''
                  FROM DUAL;
          END LOOP;
+         EXIT WHEN prod_ins%NOTFOUND;
       END LOOP;
 
 

@@ -1,4 +1,4 @@
---drop sequence sq_geo_t_id;
+drop sequence sq_geo_t_id;
 
 create sequence sq_geo_t_id;
 

@@ -1,17 +1,33 @@
-DROP TABLE U_STG.T_GEO_OBIECT_ACTION CASCADE CONSTRAINTS;
+/* Formatted on 13.08.2013 6:21:48 (QP5 v5.139.911.3011) */
+ALTER TABLE u_stg.t_geo_object_actions
+ DROP PRIMARY KEY CASCADE;
 
-CREATE TABLE U_STG.T_GEO_OBIECT_ACTION
+DROP TABLE u_stg.t_geo_object_actions CASCADE CONSTRAINTS;
+
+CREATE TABLE u_stg.t_geo_object_actions
 (
-  GEO_ID          NUMBER(22),
-  ACTION_TYPE_ID  NUMBER(20),
-  ACTION_DT       DATE,
-  VALUE_OLD_NUM   NUMBER(20),
-  VALUE_OLD_NM    NUMBER(20)
+   act_id         NUMBER ( 20 ) NOT NULL
+ , action_type    VARCHAR2 ( 80 BYTE )
+ , geo_id         NUMBER ( 22 )
+ , v_old_int      NUMBER ( 22 )
+ , v_new_int      NUMBER ( 22 )
+ , action_dt      DATE
 )
-TABLESPACE TS_STG_DATA_01
-;
-
-COMMENT ON COLUMN U_STG.T_GEO_OBIECT_ACTION.GEO_ID IS 'Unique ID for All Geography objects';
+TABLESPACE ts_stg_data_01;
 
 
-GRANT INSERT, SELECT, UPDATE ON U_STG.T_GEO_OBIECT_ACTION TO U_DW_EXT_REFERENCES;
+CREATE UNIQUE INDEX u_stg.t_actions_pk
+   ON u_stg.t_geo_object_actions ( act_id )
+   LOGGING
+   TABLESPACE ts_stg_data_01;
+
+
+ALTER TABLE u_stg.t_geo_object_actions ADD (
+  CONSTRAINT t_actions_pk
+ PRIMARY KEY
+ (act_id)
+    USING INDEX
+    TABLESPACE ts_stg_data_01
+ );
+
+GRANT INSERT, SELECT, UPDATE ON u_stg.t_geo_object_actions TO u_dw_ext_references;
