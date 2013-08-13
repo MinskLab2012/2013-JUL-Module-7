@@ -1,0 +1,16 @@
+DROP SEQUENCE seq_t_actions;
+
+CREATE SEQUENCE seq_t_actions
+   START WITH 1
+   INCREMENT BY 1
+   NOCACHE
+   NOCYCLE;
+
+
+DROP SEQUENCE seq_t_dish_actions;
+
+CREATE SEQUENCE seq_t_dish_actions
+   START WITH 1
+   INCREMENT BY 1
+   NOCACHE
+   NOCYCLE;
