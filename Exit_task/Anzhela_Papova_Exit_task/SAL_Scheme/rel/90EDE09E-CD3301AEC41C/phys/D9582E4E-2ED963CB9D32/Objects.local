@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.storage.oracle.v10g.StorageDesignOraclev10g>
+   <object objectType="TSpace" objectID="764A2D8D-8E61-D212-1255-4EBE085E37EC" name="TS_SAL_DATA_01" seqName="seg_0"/>
+   <object objectType="TSpace" objectID="139AC8D7-68D0-80C3-1700-024B82691E57" name="TS_SAL_SL" seqName="seg_0"/>
+   <object objectType="User" objectID="MDSYS" name="MDSYS" seqName="seg_0"/>
+   <object objectType="User" objectID="PUBLIC" name="PUBLIC" seqName="seg_0"/>
+   <object objectType="User" objectID="71C3153D-4D09-B88A-DFC1-89E86A4AA376" name="SAL" seqName="seg_0"/>
+   <object objectType="SType" objectID="47E390DE-0671-C4B1-8428-0F45CBEE18F8" name="SDO_GEOMETRY" seqName="seg_0"/>
+   <object objectType="SType" objectID="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" name="XMLTYPE" seqName="seg_0"/>
+   <object objectType="Table" objectID="1BB2E311-8678-7C5D-8352-1C9F0DD5DDDD" name="DIM_TIME_MM" seqName="seg_0"/>
+   <object objectType="Table" objectID="1C30BED2-5A18-DA2D-FFF7-458275389EE6" name="DIM_GEN_PERIODS" seqName="seg_0"/>
+   <object objectType="Table" objectID="5768CABB-7B02-2BE1-3B10-623E964F08F2" name="DIM_FIN_SOURCES" seqName="seg_0"/>
+   <object objectType="Table" objectID="C154E0F5-CD21-3D40-9771-E00D3132E281" name="DIM_PROGRAMS_SCD" seqName="seg_0"/>
+   <object objectType="Table" objectID="DB5157F0-D5B9-DCAE-A8AC-DE56538A070C" name="FCT_WB_FIN_COUNTRIES_MM" seqName="seg_0"/>
+   <object objectType="Table" objectID="FFF52637-8567-3632-49D8-47D69945EABA" name="DIM_COUNTRIES_SCD" seqName="seg_0"/>
+   <object objectType="Segment" objectID="3FCE16DF-A01E-E246-F0ED-F81C226E003B" name="Storage1" seqName="seg_0"/>
+   <object objectType="Segment" objectID="F69E6B50-525F-DEEC-0EDA-0B3351EBEE45" name="Storage11" seqName="seg_0"/>
+   <object objectType="Segment" objectID="70F37EAE-9B54-DF02-903A-A04059EC7D1E" name="Storage23" seqName="seg_0"/>
+   <object objectType="Segment" objectID="698C58BD-F309-8D3C-75BE-C3AAA98524E1" name="Storage6" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.storage.oracle.v10g.StorageDesignOraclev10g>

@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableProxyOraclev10g" name="DIM_FIN_SOURCES" id="5768CABB-7B02-2BE1-3B10-623E964F08F2" directorySegmentName="seg_0">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>3FCE16DF-A01E-E246-F0ED-F81C226E003B</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="FIN_SOURCE_CODE" id="1713393C-2F28-DDFB-5A4B-CA16AC862FC6">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="INSERT_DT" id="19288731-2755-F78E-A675-8A2D4B6ACDEA">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="FIN_SOURCE_DESC" id="3507DE9E-903E-F079-BA70-133B2FFB3B78">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="FIN_SOURCE_ID" id="5596FD49-1983-AEFE-A2FF-880084452252">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.ColumnProxyOraclev10g" name="UPDATE_DT" id="A25DCE62-1165-1249-0F5F-5CC193950B28">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PK_DIM_FIN_SOURCES" id="059B4E21-095B-D97E-4940-E8E5E875F11A">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:13 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<segment>698C58BD-F309-8D3C-75BE-C3AAA98524E1</segment>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_DIM_FIN_SOURCES" id="AEEC569F-98D3-BA1D-6624-58C3E137390C">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:14 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<tableSpace>764A2D8D-8E61-D212-1255-4EBE085E37EC</tableSpace>
+<existingIndex>059B4E21-095B-D97E-4940-E8E5E875F11A</existingIndex>
+<indexSegment>698C58BD-F309-8D3C-75BE-C3AAA98524E1</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev10g>

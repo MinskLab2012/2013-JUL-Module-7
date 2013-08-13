@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="SAL" id="71C3153D-4D09-B88A-DFC1-89E86A4AA376" directorySegmentName="seg_0">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjName>SAL</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:10 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+</UserOraclev10g>

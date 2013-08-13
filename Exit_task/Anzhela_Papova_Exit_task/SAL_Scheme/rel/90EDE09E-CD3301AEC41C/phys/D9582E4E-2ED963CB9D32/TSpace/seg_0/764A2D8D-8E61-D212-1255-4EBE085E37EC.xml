@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableSpaceOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableSpaceOraclev10g" name="TS_SAL_DATA_01" id="764A2D8D-8E61-D212-1255-4EBE085E37EC" directorySegmentName="seg_0">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>TS_SAL_DATA_01</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<emUniformSize>0</emUniformSize>
+<extentManagement>LOCAL</extentManagement>
+</TableSpaceOraclev10g>

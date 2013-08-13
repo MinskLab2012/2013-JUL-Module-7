@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="SAL_Scheme" id="ADB2BD83-2CB6-E120-01DE-664544E82D8A" version="3.5">
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:02:43 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>ADB2BD83-2CB6-E120-01DE-664544E82D8A</designId>
+</OSDM_Design>

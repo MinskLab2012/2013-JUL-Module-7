@@ -1,0 +1,229 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="DB5157F0-D5B9-DCAE-A8AC-DE56538A070C" directorySegmentName="seg_0" name="FCT_WB_FIN_COUNTRIES_MM">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>SAL</sourceObjSchema>
+<sourceObjName>FCT_WB_FIN_COUNTRIES_MM</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<schemaObject>12C232DB-A71C-2C1D-8BF2-FDFD94F7098D</schemaObject>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="EVENT_DT" id="B0871DDF-A237-AFED-21B3-CC9A6B0CFAD7">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>EVENT_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DIM_COUNTRIES_SURR_ID" id="91F6D4B2-B55D-A618-2C0E-08BD465424A3">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>DIM_COUNTRIES_SURR_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DIM_PROGRAMS_SURR_ID" id="F866397E-43D7-0A7A-8364-C0CC4E19994F">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>DIM_PROGRAMS_SURR_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DIM_GEN_PERIODS_SURR_ID" id="8CF338F5-AB5E-4AB6-BC97-7E20EDD9EE4A">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>DIM_GEN_PERIODS_SURR_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DIM_FIN_SOURCES_ID" id="EFCBA56A-BBDC-60EB-E733-D9D55135FBEA">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>DIM_FIN_SOURCES_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="FIN_AMOUNT" id="BBF4B9B2-9CDA-2F61-D1C3-80738BFE8097">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>FIN_AMOUNT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="GDP" id="72AD2EF3-619E-37AC-AC5E-5AC37A9E7C98">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>GDP</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="BUD_DEFICIT" id="F18109EF-4091-C441-65EF-3245C425A7A4">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>BUD_DEFICIT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TA_DIM_CNTR_COUNTRY_GEO_ID" id="741D66E8-990C-731A-3F57-629C42545B38">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>TA_DIM_CNTR_COUNTRY_GEO_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TA_DIM_PRG_PROGRAM_ID" id="30959B2F-ED22-FD64-8447-72EC81CE41DA">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>TA_DIM_PRG_PROGRAM_ID</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="TA_DIM_PRD_PERIOD_ID_DL" id="4DA03741-FC0A-9F5B-88CD-F377FA47FE0E">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>TA_DIM_PRD_PERIOD_ID_DL</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="INSERT_DT" id="AA6E209A-1C2A-F40A-9571-F99A6A9A3305">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>INSERT_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="UPDATE_DT" id="010CC3EB-385F-24DF-436F-102671DF62DF">
+<sourceConnName>SAL</sourceConnName>
+<sourceObjSchema>FCT_WB_FIN_COUNTRIES_MM</sourceObjSchema>
+<sourceObjName>UPDATE_DT</sourceObjName>
+<createdBy>Anzhela_Papova</createdBy>
+<createdTime>2013-08-13 11:06:12 UTC</createdTime>
+<ownerDesignName>SAL_Scheme</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>
