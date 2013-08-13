@@ -1,0 +1,21 @@
+/* Formatted on 8/11/2013 3:12:10 PM (QP5 v5.139.911.3011) */
+CREATE TABLE dim_gen_periods
+(
+   period_id      NUMBER ( 20 ) NOT NULL
+ , period_from    DATE
+ , period_to      DATE
+ , period_name    VARCHAR2 ( 60 )
+ , last_insert_dt DATE
+ , last_update_dt DATE
+)
+TABLESPACE dw_star_gen_per
+PCTUSED 0
+PCTFREE 10
+INITRANS 1
+MAXTRANS 255
+STORAGE ( INITIAL 64 K NEXT 1 M MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0 BUFFER_POOL DEFAULT )
+LOGGING
+NOCOMPRESS
+NOCACHE
+NOPARALLEL
+MONITORING;
