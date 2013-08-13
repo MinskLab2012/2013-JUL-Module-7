@@ -29,7 +29,6 @@ create table DIM_GEO_LOCATIONS_SCD
    geo_level_code     VARCHAR(36),
    valid_from         DATE,
    valid_to           DATE,
-   is_actual          VARCHAR(1),
    insert_dt          DATE,
    update_dt          DATE,
    constraint PK_DIM_GEO_LOCATIONS_SCD primary key (geo_surr_id)
@@ -44,5 +43,7 @@ minvalue 1
  /
  
  grant insert on DIM_GEO_LOCATIONS_SCD to u_dw_references;
+  grant update on DIM_GEO_LOCATIONS_SCD to u_dw_references;
   grant select on DIM_GEO_LOCATIONS_SCD to u_dw_references;
    grant select on seq_dim_geo_locations to u_dw_references;
+   grant select on DIM_GEO_LOCATIONS_SCD to st_data;

@@ -23,11 +23,13 @@ create table DIM_TIMES
    calendar_month_name VARCHAR(36),
    calendar_quarter_number NUMBER(2,0),
    days_in_cal_quarter NUMBER(4,0),
-   cal_quarter_ending_date DATE,
+   beg_of_calendar_quarter DATE,
+    end_of_calendar_quarter DATE,
    calendar_year      NUMBER(5,0),
    days_in_cal_year   NUMBER(4,0),
    beg_of_cal_year    DATE,
    end_of_cal_year    DATE,
    constraint PK_DIM_TIMES primary key (time_id)
 );
+grant insert, update on dim_times to st_data;
 

@@ -17,6 +17,6 @@ create table DIM_DELIVERY_SYSTEMS
    update_dt          DATE,
    constraint PK_DIM_DELIVERY_SYSTEMS primary key (delivery_system_id)
 );
- grant insert on DIM_DELIVERY_SYSTEMS to st_data;
+ grant insert, update on DIM_DELIVERY_SYSTEMS to st_data;
   grant select on DIM_DELIVERY_SYSTEMS to st_data;
 
