@@ -1,0 +1,7 @@
+merge into u_dw_references.departments dept
+using (select distinct department_id, sum(nvl(geo_id,0)) geo_id, department_name,manager_id, city,sysdate,null from structures where department_id is not null
+group by department_id, department_name,manager_id, city,sysdate,null) st
+on(st.department_id=dept.departments_id)
+when not matched then insert (departments_id, geo_id, department_name,manager_id, city,insert_dt,update_dt)
+values (st.department_id, st.geo_id, st.department_name,st.manager_id, st.city,sysdate,null)
+when matched then update set dept.update_dt=sysdate;

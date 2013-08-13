@@ -1,0 +1,13 @@
+  SELECT NVL ( client_country, 'other' ) country
+       , prod_category
+       , ROUND ( SUM ( amount_sold )
+               , -4 )
+            sold
+       , ROW_NUMBER ( )
+            OVER ( PARTITION BY NVL ( client_country, 'other' )
+                   ORDER BY ROUND ( SUM ( amount_sold )
+                                  , -4 ) )
+            "row_number"
+    FROM operations
+GROUP BY NVL ( client_country, 'other' )
+       , prod_category;

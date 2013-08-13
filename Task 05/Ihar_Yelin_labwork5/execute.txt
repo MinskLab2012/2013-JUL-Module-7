@@ -1,0 +1,70 @@
+/* Formatted on 8/13/2013 12:47:58 PM (QP5 v5.139.911.3011) */
+CREATE SEQUENCE seq_op;
+
+DECLARE
+   TYPE oper IS TABLE OF "U_DW_REFERENCES"."OPERATIONS"%ROWTYPE;
+
+   inser_data     oper;
+
+   TYPE num IS TABLE OF NUMBER;
+
+   client_id      num;
+   prod_id        num;
+
+   amount_sold    num;
+   deliv_id       num;
+
+   TYPE op IS RECORD
+   (
+      "CLIENT_ID"    NUMBER ( 10, 0 )
+    , "PROD_ID"      NUMBER ( 10, 0 )
+    , "AMOUNT_SOLD"  NUMBER ( 10, 0 )
+    , "DELIV_ID"     NUMBER ( 10, 0 )
+   );
+
+   TYPE curoper IS REF CURSOR
+      RETURN op;
+
+   cur_op         curoper;
+   q_insert       VARCHAR2 ( 1000 );
+BEGIN
+   OPEN cur_op FOR
+      SELECT DISTINCT client_id -- ext_cl
+                    , prod_id -- ext_prod
+                    , amount_sold -- ext_sold
+                    , deliv_id --ext_deliv
+        FROM operations
+       WHERE event_date IS NOT NULL;
+
+   FETCH cur_op
+   BULK COLLECT INTO client_id, prod_id, amount_sold, deliv_id;
+
+
+   CLOSE cur_op;
+
+   q_insert    := 'INSERT INTO operations ( client_id
+                               , prod_id 
+                              , operation_id
+                               , amount_sold 
+                               , deliv_id 
+                        , insert_dt)
+                      VALUES ( :a
+                            ,:s
+                          ,:d
+                          ,:f
+                          ,:g
+                          ,:h
+                              )';
+
+   FOR i IN inser_data.FIRST .. inser_data.LAST LOOP
+      EXECUTE IMMEDIATE q_insert
+         USING client_id ( i )
+             , prod_id ( i )
+             , seq_op.NEXTVAL
+             , amount_sold ( i )
+             , deliv_id ( i )
+             , SYSDATE;
+
+      COMMIT;
+   END LOOP;
+END;

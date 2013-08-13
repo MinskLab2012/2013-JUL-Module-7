@@ -1,0 +1,27 @@
+--create sequence del;
+
+declare 
+TYPE deliv is table of "U_DW_REFERENCES"."DELIVERY" %rowtype;
+del_data deliv;
+type deli is record  (	"DEPARTMENTS_ID" NUMBER(10,0), 
+	"DELIV_ID" NUMBER(10,0) , 
+	"DELIV_CATEGORY" VARCHAR2(50 BYTE), 
+	"COST" NUMBER(10,0), 
+	"INSERT_DT" DATE, 
+	"UPDATE_DT" DATE, 
+	"DEL_ID" NUMBER(10,0));
+TYPE curdel is ref cursor return deli;
+cur_del curdel;
+begin
+open cur_del for select dbms_random.value(round((select min(department_id) from departments)),round((select max(department_id) from departments))),
+deliv_id, deliv_category, deliv_cost,sysdate, null,del.nextval from delivery ;
+
+loop 
+
+fetch cur_del bulk collect into del_data;
+forall i in 1..del_data.count
+insert into u_dw_references.delivery values del_data(i);
+exit when cur_del%notfound;
+end loop;
+close cur_del;
+end;

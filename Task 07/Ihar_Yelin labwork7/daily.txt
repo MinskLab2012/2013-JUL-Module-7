@@ -1,0 +1,24 @@
+/* Formatted on 8/8/2013 5:09:52 PM (QP5 v5.139.911.3011) */
+CREATE MATERIALIZED VIEW LOG ON operations
+   WITH PRIMARY KEY
+   INCLUDING NEW VALUES;
+
+   CREATE MATERIALIZED VIEW daily_commit
+   BUILD IMMEDIATE
+   REFRESH  ON COMMIT
+   AS
+SELECT TRUNC ( TO_DATE ( event_date )
+                         , 'DAY' )
+                      da
+                 , client_country
+                 , prod_category
+                 , SUM ( amount_sold ) sold
+                 , COUNT ( amount_sold )
+              FROM operations
+             WHERE TRUNC ( TO_DATE ( event_date )
+                         , 'DAY' ) = '01/04/2007'
+          GROUP BY client_country
+                 , prod_category
+                 , TRUNC ( TO_DATE ( event_date )
+                         , 'DAY' )
+ORDER BY 1;

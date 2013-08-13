@@ -1,0 +1,105 @@
+/* Formatted on 8/8/2013 5:04:37 PM (QP5 v5.139.911.3011) */
+DROP SEQUENCE cli;
+
+CREATE SEQUENCE cli;
+
+DECLARE
+   TYPE operat IS RECORD
+   (
+      st_client      VARCHAR2 ( 50 )
+    , st_geo         NUMBER
+    , st_acc         VARCHAR2 ( 50 )
+    , st_phone       VARCHAR2 ( 50 )
+    , sou_client     VARCHAR2 ( 50 )
+    , sou_geo        NUMBER
+    , cust_first_name VARCHAR2 ( 50 )
+    , cust_last_name VARCHAR2 ( 50 )
+    , cust_gender    VARCHAR2 ( 50 )
+    , cust_street_address VARCHAR2 ( 50 )
+    , cust_city      VARCHAR2 ( 50 )
+    , sou_acc        NUMBER
+    , cust_email     VARCHAR2 ( 50 )
+    , sou_phone      VARCHAR2 ( 50 )
+   );
+
+   TYPE clie IS TABLE OF operat;
+
+   cl_data        clie;
+
+   CURSOR client
+   IS
+      SELECT st.client_id st_client
+           , st.geo_id st_geo
+           , st.account st_acc
+           , st.phone_number st_phone
+           , sou.cust_id sou_client
+           , sou.geo_id sou_geo
+           , sou.cust_first_name
+           , sou.cust_last_name
+           , sou.cust_gender
+           , sou.cust_street_address
+           , sou.cust_city
+           , sou.cust_credit_limit sou_acc
+           , sou.cust_email
+           , sou.cust_main_phone_number sou_phone
+        FROM    (SELECT DISTINCT cust_id
+                               , geo_id
+                               , cust_first_name
+                               , cust_last_name
+                               , cust_gender
+                               , cust_street_address
+                               , cust_city
+                               , cust_credit_limit
+                               , cust_email
+                               , cust_main_phone_number
+                   FROM clients
+                  WHERE cust_id IS NOT NULL) sou
+             LEFT JOIN
+                (SELECT client_id
+                      , geo_id
+                      , account
+                      , phone_number
+                   FROM u_dw_references.clients) st
+             ON st.client_id = sou.cust_id;
+BEGIN
+   OPEN client;
+
+   FETCH client
+   BULK COLLECT INTO cl_data;
+
+   FOR i IN 1 .. cl_data.COUNT LOOP
+      IF cl_data ( i ).st_client IS NULL THEN
+         INSERT INTO u_dw_references.clients
+              VALUES ( cl_data ( i ).sou_client
+                     , cl_data ( i ).sou_geo
+                     , cl_data ( i ).cust_first_name
+                     , cl_data ( i ).cust_last_name
+                     , cl_data ( i ).cust_gender
+                     , cl_data ( i ).cust_street_address
+                     , cl_data ( i ).cust_city
+                     , cl_data ( i ).sou_acc
+                     , cl_data ( i ).cust_email
+                     , cl_data ( i ).sou_phone
+                     , SYSDATE
+                     , NULL
+                     , cli.NEXTVAL );
+      ELSE
+         UPDATE u_dw_references.clients
+            SET client_id    = cl_data ( i ).sou_client
+              , geo_id       = cl_data ( i ).sou_geo
+              , phone_number = cl_data ( i ).sou_phone
+              , account      = cl_data ( i ).sou_acc;
+
+         INSERT INTO u_dw_references.clients_actions
+              VALUES ( cli.CURRVAL
+                     , SYSDATE
+                     , 'account'
+                     , cl_data ( i ).st_acc
+                     , cl_data ( i ).sou_acc );
+      END IF;
+   END LOOP;
+
+   CLOSE client;
+
+   COMMIT;
+END;

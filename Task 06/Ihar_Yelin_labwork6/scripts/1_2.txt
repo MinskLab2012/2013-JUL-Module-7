@@ -1,0 +1,9 @@
+SELECT client_country
+     , prod_category
+     , MIN ( max_value )
+  FROM (SELECT client_country
+             , prod_category
+             , LAST_VALUE ( amount_sold ) ignore  NULLS
+over( partition by client_country order by amount_sold DESC rows  unbounded preceding ) max_value
+from operations)
+group by client_country, prod_category;

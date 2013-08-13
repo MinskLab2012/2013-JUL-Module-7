@@ -1,0 +1,63 @@
+/* Formatted on 8/12/2013 6:48:11 PM (QP5 v5.139.911.3011) */
+SELECT DISTINCT sou.prod_category_desc
+              , st.category_desc
+  FROM products sou LEFT JOIN u_dw_references.prod_category st ON sou.prod_category_desc = st.category_desc;
+
+CREATE SEQUENCE cater;
+
+DECLARE
+   cat_cur        SYS_REFCURSOR;
+
+   TYPE categ_type IS RECORD
+   (
+      sou_cate       VARCHAR2 ( 50 )
+    , sou_id         NUMBER
+    , st_cate        VARCHAR2 ( 50 )
+    , st_id          NUMBER
+   );
+
+   TYPE cater_type IS TABLE OF categ_type;
+
+   cate           cater_type;
+   curid          NUMBER;
+   sql_query      VARCHAR2 ( 500 );
+   val            NUMBER;
+BEGIN
+   sql_query   := 'select distinct sou.prod_category_desc sou_cat,sou.prod_category_id sou_id,
+st.category_desc st_cat, st.prod_category_id st_id from products sou
+left join u_dw_references.prod_category st on sou.prod_category_id=st.prod_category_id';
+   curid       := dbms_sql.open_cursor;
+   dbms_sql.parse ( curid
+                  , sql_query
+                  , dbms_sql.native );
+   val         := dbms_sql.execute ( curid );
+   cat_cur     := dbms_sql.to_refcursor ( curid );
+
+   FETCH cat_cur
+   BULK COLLECT INTO cate;
+
+   FORALL i IN 1 .. cate.COUNT
+      MERGE INTO u_dw_references.prod_category st
+           USING (SELECT DISTINCT prod_category_id
+                                , prod_category_desc
+                    FROM products) sou
+              ON ( sou.prod_category_id = st.prod_category_id )
+      WHEN NOT MATCHED THEN
+         INSERT            ( category_id
+                           , category_desc
+                           , insert_dt
+                           , update_dt
+                           , prod_category_id )
+             VALUES ( cater.NEXTVAL
+                    , cate ( i ).sou_cate
+                    , SYSDATE
+                    , NULL
+                    , cate ( i ).sou_id )
+      WHEN MATCHED THEN
+         UPDATE SET category_desc = cate ( i ).sou_cate
+                  , update_dt    = SYSDATE;
+
+
+
+   COMMIT;
+END;

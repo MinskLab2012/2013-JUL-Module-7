@@ -1,0 +1,8 @@
+  SELECT NVL ( client_country, 'other' ) country
+       , prod_category
+       , ROUND ( MIN ( amount_sold ) ) sold
+    FROM operations
+GROUP BY NVL ( client_country, 'other' )
+       , prod_category
+ORDER BY NVL ( client_country, 'other' )
+       , prod_category;

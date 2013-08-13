@@ -1,0 +1,110 @@
+
+--create sequence suppl;
+
+
+DECLARE
+   cur_id         NUMBER;
+   column_var     NUMBER;
+   describe_table dbms_sql.desc_tab;
+   num_var        NUMBER;
+   sql_str        VARCHAR2 ( 5000 );
+   cur            SYS_REFCURSOR;
+   su_id          NUMBER;
+   st_id          NUMBER;
+   su_name        VARCHAR2 ( 50 );
+   su_phone       VARCHAR2 ( 50 );
+   su_mail        VARCHAR2 ( 50 );
+   su_categ       NUMBER;
+   su_country     VARCHAR2 ( 50 );
+   su_geo         NUMBER;
+BEGIN
+   sql_str     :=
+      'select distinct st.suppl_id, sou.suppl_id, sou.des, sou.phone_number,
+sou.mail, round(dbms_random.value((select min(category_id) from u_dw_references.prod_category),(select max(category_id) from u_dw_references.prod_category))) sou_cat_id,
+sou.country_name, sou.geo_id from suppliers sou left join u_dw_references.suppliers st on st.suppl_id=sou.suppl_id';
+
+   OPEN cur FOR sql_str;
+
+   cur_id      := dbms_sql.to_cursor_number ( cur );
+   dbms_sql.describe_columns ( cur_id
+                             , column_var
+                             , describe_table );
+   dbms_sql.define_column ( cur_id
+                          , 1
+                          , st_id );
+   dbms_sql.define_column ( cur_id
+                          , 2
+                          , su_id );
+   dbms_sql.define_column ( cur_id
+                          , 3
+                          , su_name );
+   dbms_sql.define_column ( cur_id
+                          , 4
+                          , su_phone );
+   dbms_sql.define_column ( cur_id
+                          , 5
+                          , su_mail );
+   dbms_sql.define_column ( cur_id
+                          , 6
+                          , su_categ );
+   dbms_sql.define_column ( cur_id
+                          , 7
+                          , su_country );
+   dbms_sql.define_column ( cur_id
+                          , 8
+                          , su_geo );
+
+   WHILE dbms_sql.fetch_rows ( cur_id ) > 0 LOOP
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 1
+                            , st_id );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 2
+                            , su_id );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 3
+                            , su_name );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 4
+                            , su_phone );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 5
+                            , su_mail );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 6
+                            , su_categ );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 7
+                            , su_country );
+      dbms_sql.COLUMN_VALUE ( cur_id
+                            , 8
+                            , su_geo );
+
+      IF st_id IS NULL THEN
+         INSERT INTO u_dw_references.suppliers ( geo_id
+                                               , suppl_id
+                                               , suppl_name
+                                               , phone_number
+                                               , category_id
+                                               , mail
+                                               , insert_dt
+                                               , update_dt
+                                               , su_id )
+              VALUES ( su_geo
+                     , su_id
+                     , su_name
+                     , su_phone
+                     , su_categ
+                     , su_mail
+                     , SYSDATE
+                     , NULL
+                     , suppl.NEXTVAL );
+      ELSE
+         UPDATE u_dw_references.suppliers
+            SET phone_number = su_phone
+              , update_dt    = SYSDATE;
+      END IF;
+   END LOOP;
+
+   COMMIT;
+END;

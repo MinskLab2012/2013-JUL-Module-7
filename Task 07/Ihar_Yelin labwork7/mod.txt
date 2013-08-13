@@ -1,0 +1,25 @@
+REATE MATERIALIZED VIEW LOG ON operations
+   WITH PRIMARY KEY
+   INCLUDING NEW VALUES;
+
+
+
+CREATE MATERIALIZED VIEW daily_model
+  REFRESH START WITH SYSDATE NEXT SYSDATE + 1/60
+  AS 
+
+WITH abc AS (  SELECT NVL ( client_country, 'Other' ) client_country
+                    , prod_category
+                    , SUM ( amount_sold ) AS amount_sold
+                 FROM operations
+                WHERE TRUNC ( TO_DATE ( event_date )
+                            , 'DAY' ) = '01/04/2007'
+             GROUP BY client_country
+                    , prod_category)
+SELECT *
+  FROM abc
+MODEL
+   DIMENSION BY ( client_country, prod_category )
+   MEASURES ( amount_sold, 0 sold )
+   RULES
+      ( sold [client_country, prod_category] = amount_sold[CV ( client_country ), CV ( prod_category )] + 1000 );

@@ -1,0 +1,78 @@
+CREATE SEQUENCE emp;
+
+--drop sequence emp;
+
+DECLARE
+   CURSOR cur
+   IS
+      SELECT u.u_em
+           , st.st_em
+           , st.st_dep
+           , st.st_fname
+           , st.st_lname
+           , st.st_exp
+           , st.st_ph
+           , st.st_e
+           , u.u_dep
+           , u.u_fname
+           , u.u_lname
+           , u.u_exp
+           , u.u_ph
+           , u.u_e
+        FROM    (SELECT DISTINCT employee_id st_em
+                               , department_id st_dep
+                               , first_name st_fname
+                               , last_name st_lname
+                               , EXP st_exp
+                               , phone_number st_ph
+                               , email st_e
+                   FROM structures
+                  WHERE employee_id IS NOT NULL) st
+             LEFT JOIN
+                (SELECT DISTINCT employee_id u_em
+                               , departments_id u_dep
+                               , first_name u_fname
+                               , last_name u_lname
+                               , experience u_exp
+                               , phone_number u_ph
+                               , email u_e
+                   FROM u_dw_references.employees
+                  WHERE employee_id IS NOT NULL) u
+             ON u.u_em = st.st_em;
+
+   v_get          cur%ROWTYPE;
+BEGIN
+  
+
+  
+
+  
+
+    
+for i in cur loop
+      IF (i.u_em IS NULL) THEN
+         INSERT INTO u_dw_references.employees
+              VALUES ( i.st_em
+                     , i.st_dep
+                     , i.st_fname
+                     , i.st_lname
+                     , i.st_exp
+                     , i.st_ph
+                     , i.st_e
+                     , SYSDATE
+                     , NULL
+                     , emp.NEXTVAL );
+      ELSEIF (i.u_em IS NOT NULL) THEN
+         UPDATE u_dw_references.employees
+            SET employee_id  = i.st_em
+              , departments_id = i.st_dep
+              , experience   = i.st_exp
+              , phone_number = i.st_ph
+              , update_dt    = SYSDATE;
+      ELSE 
+         EXIT;
+      END IF;
+   END LOOP;
+  COMMIT;
+
+END;
