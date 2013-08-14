@@ -1,4 +1,4 @@
-/* Formatted on 13.08.2013 17:55:39 (QP5 v5.139.911.3011) */
+/* Formatted on 14.08.2013 5:15:26 (QP5 v5.139.911.3011) */
 CREATE OR REPLACE PACKAGE BODY pkg_star_load
 AS
    PROCEDURE cls_dim_times_load_first
@@ -188,6 +188,7 @@ AS
 
       INSERT INTO cls_dim_products
          SELECT tp.product_id
+              , lcp.product_name
               , product_name category_desc
               , measure_desc
               , cost
@@ -234,7 +235,8 @@ AS
                               CONNECT BY PRIOR parent_geo_id = child_geo_id) PIVOT (SUM ( geo_id )
                                                                              FOR link_type_id
                                                                              IN (2 AS l_2, 3 AS l_3)))
-         SELECT country_geo_id
+         SELECT ROWNUM AS rn
+              , country_geo_id
               , country_id
               , country_code_a3
               , country_desc
@@ -247,7 +249,6 @@ AS
               , valid_from
               , valid_to
               , is_actual
-              , ROWNUM AS rn
            FROM (SELECT lcc.geo_id AS country_geo_id
                       , lcc.country_id
                       , lcc.country_code_a3
@@ -475,4 +476,3 @@ AS
        WITH TABLE cls_fct_monthly';
    END cls_fct_monthly_load;
 END pkg_star_load;
-
